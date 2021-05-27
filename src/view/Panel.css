@@ -1,0 +1,80 @@
+.HBox{
+    -fx-background-color: #EAF3FB;
+}
+.HBox:hover{
+    -fx-background-color: #C2DEF6;
+}
+.VBox{
+    -fx-background-color: #EAF3FB;
+}
+.VBox:hover{
+    -fx-background-color: #C2DEF6;
+}
+.Text{
+    -fx-font-size: 13pt;
+}
+.Text2{
+    -fx-background-color: #FFFFFF;
+     -fx-font-size: 13pt;
+}
+
+.Text2:focused{
+    -fx-background-color: #0078D7;
+    -fx-font-size: 13pt;
+}
+
+.CheckBox{
+        -fx-font-size: 19px;
+         -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+}
+.table-cell {     
+    -fx-padding: 0.5em 0.5em 0.1em 0.3em;
+    -fx-border-color: -fx-box-border -fx-box-border transparent transparent;  
+    -fx-font: 13px "Segoe UI";    
+    -fx-border-insets: 0;
+}
+.Button{
+    -fx-background-color: #FFBE00;
+    -fx-font-size: 18pt;
+}
+.Button:hover{
+    -fx-background-color: #202332;
+    -fx-font-size: 20pt;
+}
+.parent{
+    -fx-background-color: #fff;
+}
+.sidebar{
+    -fx-background-color: #333645;
+}
+.btn{
+    -fx-background-color: transparent;
+}
+.btn:hover{
+    -fx-background-color: #202332;
+}
+.box{
+    -fx-border-color: #3B3F4B;
+    -fx-border-width: 1px 0px 0px 0px;
+}
+.round-lbl{
+    -fx-background-color: #FE7A79;
+    -fx-background-radius: 100%;
+}
+.card-01{
+    -fx-background-color: rgba(0, 162, 211,0.3);
+}
+.card-02{
+    -fx-background-color: rgba(69, 183, 175,0.3);
+}
+.card-02{
+    -fx-background-color: rgba(255, 198, 108,0.3);
+}
+.round-box{
+    -fx-background-radius: 100%;
+    -fx-border-radius: 100%;
+    -fx-border-width: 5px;
+}
+
+
+

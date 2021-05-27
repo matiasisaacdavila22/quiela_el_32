@@ -1,0 +1,2 @@
+configuracionde xampp al iniciar windows
+C:\Users\holasur\holasur\Roaming\Microsoft\Windows\Start Menu\Programs\Startup

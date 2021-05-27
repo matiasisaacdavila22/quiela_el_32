@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="panelPrincipal" prefHeight="712.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCargaDatos2Controller">
+   <children>
+      <Label layoutX="32.0" layoutY="371.0" text="carga de Numeros">
+         <font>
+            <Font name="Arial Narrow" size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumero" layoutX="13.0" layoutY="421.0" />
+      <HBox fx:id="lblMatutina" alignment="CENTER_LEFT" layoutX="25.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="MAÑANA" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblNocturna" alignment="CENTER_LEFT" layoutX="20.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="175.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="NOCTURNA" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblTarde" alignment="CENTER_LEFT" layoutX="20.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="TARDE" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblVespertina" alignment="CENTER_LEFT" layoutX="22.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="170.0" styleClass="btns">
+         <children>
+            <Label text="MATUTINA" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblNacional" alignment="CENTER_LEFT" layoutX="266.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="NACIONAL" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox fx:id="lblProvincia" alignment="CENTER_LEFT" layoutX="423.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="PROVINCIA" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblSantafe" alignment="CENTER_LEFT" layoutX="573.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="SANTAFE" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblEntrerios" alignment="CENTER_LEFT" layoutX="736.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="122.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="ENTRERIOS" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblCordoba" alignment="CENTER_LEFT" layoutX="904.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="CORDOBA" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblOros" alignment="CENTER_LEFT" layoutX="1065.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="OROS" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <DatePicker fx:id="dp" layoutX="13.0" layoutY="20.0" />
+      <TableView fx:id="tblNacional" layoutX="226.0" layoutY="141.0" onMouseClicked="#seleccionarN" prefHeight="545.0" prefWidth="155.0">
+         <columns>
+            <TableColumn fx:id="colNumeroN" prefWidth="37.0" text="N°" />
+            <TableColumn fx:id="colNacional" prefWidth="110.0" text="NACIONAL" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblProvincia" layoutX="407.0" layoutY="141.0" onMouseClicked="#seleccionarP" prefHeight="545.0" prefWidth="143.0">
+         <columns>
+            <TableColumn fx:id="colNumeroP" prefWidth="41.0" text="N°" />
+            <TableColumn fx:id="colProvincia" prefWidth="96.0" text="PROVINCIA" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblSantafe" layoutX="565.0" layoutY="141.0" onMouseClicked="#seleccionarS" prefHeight="545.0" prefWidth="143.0">
+         <columns>
+            <TableColumn fx:id="colNumeroS" prefWidth="36.0" text="N°" />
+            <TableColumn fx:id="colSantafe" prefWidth="101.0" text="SANTAFE" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblEntrerios" layoutX="722.0" layoutY="141.0" onMouseClicked="#seleccionarE" prefHeight="545.0" prefWidth="149.0">
+         <columns>
+            <TableColumn fx:id="colNumeroE" prefWidth="39.0" text="N°" />
+            <TableColumn fx:id="colEntrerios" prefWidth="104.0" text="ENTRERIOS" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblCordoba" layoutX="885.0" layoutY="141.0" onMouseClicked="#seleccionarC" prefHeight="545.0" prefWidth="149.0">
+         <columns>
+            <TableColumn fx:id="colNumeroC" prefWidth="38.0" text="N°" />
+            <TableColumn fx:id="colCordoba" prefWidth="105.0" text="CORDOBA" />
+         </columns>
+      </TableView>
+      <TableView fx:id="tblOros" layoutX="1048.0" layoutY="142.0" onMouseClicked="#seleccionarO" prefHeight="545.0" prefWidth="149.0">
+         <columns>
+            <TableColumn fx:id="colNumeroO" prefWidth="38.0" text="N°" />
+            <TableColumn fx:id="colOros" prefWidth="105.0" text="OROS" />
+         </columns>
+      </TableView>
+      <Label layoutX="428.0" layoutY="25.0" prefHeight="36.0" prefWidth="112.0" text="FECHA :">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblFecha" layoutX="548.0" layoutY="25.0">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnImprimirStracto" layoutX="8.0" layoutY="543.0" mnemonicParsing="false" onMouseClicked="#imprimirStracto" prefHeight="31.0" prefWidth="187.0" text="Imprimir " />
+   </children>
+</AnchorPane>

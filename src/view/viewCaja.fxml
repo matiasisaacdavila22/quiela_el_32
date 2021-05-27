@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="508.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewCajaController">
+   <children>
+      <Text layoutX="40.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="caja inicial" wrappingWidth="128.6708984375">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font></Text>
+      <Text layoutX="40.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="caja mañana">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font></Text>
+      <Text layoutX="40.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="caja tarde">
+         <font>
+            <Font name="Arial Black" size="20.0" />
+         </font></Text>
+      <Text layoutX="208.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="caja final">
+         <font>
+            <Font name="Arial Black" size="25.0" />
+         </font></Text>
+      <Text layoutX="15.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Caja del dia">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblFecha" layoutX="291.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+         <font>
+            <Font size="32.0" />
+         </font></Text>
+      <Button fx:id="btnModificar" layoutX="590.0" layoutY="82.0" mnemonicParsing="false" onMouseClicked="#modificarCaja" stylesheets="@Panel.css" text="Modificar" textFill="#1a1a19" />
+      <Text fx:id="lblCaja_inicial" layoutX="219.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="149.0859375">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblCaja_maniana" layoutX="222.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="128.6708984375">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblCaja_tarde" layoutX="222.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="110.302734375">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblCaja_final" layoutX="371.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="187.0">
+         <font>
+            <Font name="System Bold Italic" size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="204.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
+      <Text layoutX="208.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
+      <Text layoutX="208.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$" />
+      <Text layoutX="347.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$">
+         <font>
+            <Font size="30.0" />
+         </font></Text>
+      <TableView fx:id="tblMovimientos" layoutX="407.0" layoutY="125.0" prefHeight="200.0" prefWidth="461.0">
+        <columns>
+          <TableColumn fx:id="colHora" prefWidth="98.0" text="Hora" />
+          <TableColumn fx:id="colDescripcion" prefWidth="272.0" text="Descripcion" />
+            <TableColumn fx:id="colMonto" prefWidth="83.0" text="Monto" />
+        </columns>
+      </TableView>
+      <Text layoutX="413.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movimientos" wrappingWidth="155.19873046875">
+         <font>
+            <Font name="System Italic" size="27.0" />
+         </font>
+      </Text>
+      <Text layoutX="647.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total :$" wrappingWidth="92.53125">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblTotalMovimientos" layoutX="740.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="126.416015625">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

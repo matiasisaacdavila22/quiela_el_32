@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="305.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewLoginController">
+   <children>
+      <Button fx:id="btnEntrar" layoutX="23.0" layoutY="252.0" mnemonicParsing="false" onMouseClicked="#entrar" onMouseDragged="#entrar" prefHeight="31.0" prefWidth="555.0" text="Entrar" />
+      <TextField fx:id="txtUser" layoutX="39.0" layoutY="101.0" prefHeight="31.0" prefWidth="249.0" promptText="Usuario" />
+      <Text fill="#000000a6" layoutX="216.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRO" wrappingWidth="190.95068359375">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="txtPassword" layoutX="39.0" layoutY="191.0" prefHeight="31.0" prefWidth="249.0" promptText="Pasword" />
+   </children>
+</AnchorPane>

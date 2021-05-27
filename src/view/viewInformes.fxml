@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="panelInformes" prefHeight="762.0" prefWidth="1238.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewInformesController">
+   <children>
+      <DatePicker fx:id="dpDesde" layoutX="40.0" layoutY="82.0" promptText="desde" />
+      <DatePicker fx:id="dpHasta" layoutX="311.0" layoutY="81.0" promptText="hasta" />
+      <Text layoutX="72.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="360.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hasta">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="275.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--&gt;">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tblBoletas" layoutX="13.0" layoutY="159.0" prefHeight="498.0" prefWidth="202.0">
+        <columns>
+          <TableColumn fx:id="colBId" prefWidth="60.0" text="nº" />
+          <TableColumn fx:id="colBMonto" prefWidth="138.0" text="monto" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblGanadas" layoutX="230.0" layoutY="161.0" prefHeight="498.0" prefWidth="202.0">
+        <columns>
+          <TableColumn fx:id="colGId" prefWidth="53.0" text="nº" />
+          <TableColumn fx:id="colGMonto" prefWidth="146.0" text="Monto" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblPagadas" layoutX="447.0" layoutY="162.0" prefHeight="498.0" prefWidth="202.0">
+        <columns>
+          <TableColumn fx:id="colPId" prefWidth="63.0" text="nº" />
+          <TableColumn fx:id="colPMonto" prefWidth="132.0" text="Monto" />
+        </columns>
+      </TableView>
+      <Text layoutX="897.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facturado :     $" wrappingWidth="167.42578125">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblFacturado" layoutX="1072.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="149.9375">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="899.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pagos :           $">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblPagos" layoutX="1072.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="149.9375">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="lblBalanceTotal" layoutX="1072.0" layoutY="557.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" wrappingWidth="149.9375">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="897.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance total : $">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="985.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Balance">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="44.0" layoutY="729.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="42.0" layoutY="756.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="45.0" layoutY="783.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="41.0" layoutY="724.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Jugadas:" />
+      <Text layoutX="255.0" layoutY="723.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Ganadas:" />
+      <Text layoutX="482.0" layoutY="719.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Pagadas:" />
+      <Text layoutX="76.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Boletas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="313.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ganadas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="511.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pagadas">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="42.0" layoutY="751.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total : $" />
+      <Text layoutX="256.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total : $" />
+      <Text layoutX="486.0" layoutY="746.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total : $" />
+      <HBox alignment="CENTER" layoutX="-1.0" prefHeight="50.0" prefWidth="1238.0" style="-fx-background-color: #BFCAFA;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Informes" wrappingWidth="161.0">
+               <font>
+                  <Font name="System Bold Italic" size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Pane layoutX="563.0" layoutY="77.0" prefHeight="50.0" prefWidth="127.0" style="-fx-background-color: D8B00E;">
+         <children>
+            <Button fx:id="btnBuscar" layoutX="-5.0" mnemonicParsing="false" onMouseClicked="#buscaBoletas" prefHeight="39.0" prefWidth="125.0" text="Buscar" />
+         </children>
+      </Pane>
+      <Pane layoutX="15.0" layoutY="665.0" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: D8B00E;">
+         <children>
+            <Button fx:id="btnInformesBoletas" layoutX="-4.0" layoutY="-7.0" mnemonicParsing="false" onMouseClicked="#generarInformeBoletas" prefHeight="35.0" prefWidth="202.0" text="Imprimir Informe" />
+         </children>
+      </Pane>
+      <Pane layoutX="232.0" layoutY="665.0" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: D8B00E;">
+         <children>
+            <Button fx:id="btnInformeGanadas" layoutX="-4.0" layoutY="-7.0" mnemonicParsing="false" onMouseClicked="#informeGanadas" prefHeight="35.0" prefWidth="202.0" text="Imprimir Informe" />
+         </children>
+      </Pane>
+      <Pane layoutX="451.0" layoutY="666.0" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: D8B00E;">
+         <children>
+            <Button fx:id="btnInformesPagadas" layoutX="-6.0" layoutY="-8.0" mnemonicParsing="false" onMouseClicked="#informerPagadas" prefHeight="35.0" prefWidth="202.0" text="Imprimir Informe" />
+         </children></Pane>
+      <Text fx:id="lblBJugadas" layoutX="145.0" layoutY="724.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="lblBTotal" layoutX="146.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="lblGGanadas" layoutX="363.0" layoutY="723.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="lblGTotoal" layoutX="363.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="lblPPagadas" layoutX="597.0" layoutY="719.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <Text fx:id="lblPTotal" layoutX="597.0" layoutY="748.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+      <TableView fx:id="tblResumen" layoutX="665.0" layoutY="164.0" prefHeight="498.0" prefWidth="202.0">
+         <columns>
+            <TableColumn fx:id="colPId1" prefWidth="63.0" text="nº" />
+            <TableColumn fx:id="colPMonto1" prefWidth="132.0" text="Monto" />
+         </columns>
+      </TableView>
+      <Pane layoutX="670.0" layoutY="672.0" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: D8B00E;" />
+      <Button fx:id="btnInformeResumens" layoutX="666.0" layoutY="663.0" mnemonicParsing="false" onMouseClicked="#informerResumen" prefHeight="35.0" prefWidth="202.0" text="Imprimir Informe" />
+      <Text layoutX="734.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resumens">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

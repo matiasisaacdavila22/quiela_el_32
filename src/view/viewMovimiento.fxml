@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="400.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewMovimientoController">
+   <children>
+      <Text layoutX="8.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Monto" wrappingWidth="116.619140625">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtMonto" layoutX="117.0" layoutY="34.0" prefHeight="31.0" prefWidth="223.0" />
+      <Button fx:id="btnAgregar" layoutX="14.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#agregarMonto" prefHeight="31.0" prefWidth="154.0" style="-fx-background-color: #819830;" text="Agregar" />
+      <Button fx:id="btnRetirar" layoutX="214.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#retirarMonto" prefHeight="31.0" prefWidth="147.0" style="-fx-background-color: #FF3600;" text="Retirrar" />
+      <Text layoutX="170.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="  ||">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="txtaMotivo" layoutX="112.0" layoutY="117.0" prefHeight="146.0" prefWidth="234.0" />
+      <Text layoutX="21.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Motivo:">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

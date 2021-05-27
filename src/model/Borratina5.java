@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model;
+
+/**
+ *
+ * @author mipc
+ */
+public class Borratina5 {
+   private  Jugada uno;
+    private Jugada dos;
+    private Jugada tres;
+    private Jugada cuatro;
+    private Jugada cinco;
+  
+  private static int idRedoblona =200;
+  
+public Borratina5(Jugada uno, Jugada dos, Jugada tres,Jugada cuatro,Jugada cinco) {
+        this.uno = uno; this.uno.setPosicion(1);
+        this.dos = dos; this.dos.setPosicion(2);
+        this.tres=tres; this.tres.setPosicion(3);
+        this.cuatro=cuatro; this.cuatro.setPosicion(4);
+        this.cinco=cinco; this.cinco.setPosicion(5);
+        
+        uno.setIdRedoblona(idRedoblona);
+        dos.setIdRedoblona(idRedoblona);
+        tres.setIdRedoblona(idRedoblona);
+        cuatro.setIdRedoblona(idRedoblona);
+        cinco.setIdRedoblona(idRedoblona);
+        
+       idRedoblona++;
+    }
+
+    public Jugada getUno() {
+        return uno;
+    }
+
+    public void setUno(Jugada uno) {
+        this.uno = uno;
+    }
+
+    public Jugada getDos() {
+        return dos;
+    }
+
+    public void setDos(Jugada dos) {
+        this.dos = dos;
+    }
+
+    public Jugada getTres() {
+        return tres;
+    }
+
+    public void setTres(Jugada tres) {
+        this.tres = tres;
+    }
+
+    public Jugada getCuatro() {
+        return cuatro;
+    }
+
+    public void setCuatro(Jugada cuatro) {
+        this.cuatro = cuatro;
+    }
+
+    public Jugada getCinco() {
+        return cinco;
+    }
+
+    public void setCinco(Jugada cinco) {
+        this.cinco = cinco;
+    }
+
+    public static int getIdRedoblona() {
+        return idRedoblona;
+    }
+
+    public static void setIdRedoblona(int idRedoblona) {
+        Borratina5.idRedoblona = idRedoblona;
+    }
+    
+}

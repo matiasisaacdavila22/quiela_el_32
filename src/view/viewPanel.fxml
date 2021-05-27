@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="791.0" prefWidth="1136.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ViewPanelController">
+   <children>
+      <AnchorPane fx:id="panelIzq" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #cdcdcd;">
+         <children>
+            <HBox fx:id="hbQuiniela" alignment="CENTER_LEFT" layoutY="121.0" onMouseClicked="#openFormQuiniela" prefHeight="46.0" prefWidth="200.0" style="-fx-border-color: #a40909;" stylesheets="@Panel.css" AnchorPane.topAnchor="121.0">
+               <children>
+                  <ImageView fitHeight="37.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/quiniela3.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#d67b1c" strokeType="OUTSIDE" strokeWidth="0.0" text="Quiniela">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="Button" />
+               </styleClass>
+            </HBox>
+            <HBox fx:id="hbBorratina" alignment="CENTER_LEFT" layoutX="-1.0" layoutY="184.0" onMouseClicked="#openFormBorratina" prefHeight="46.0" prefWidth="200.0" style="-fx-border-color: #a40909;" stylesheets="@Panel.css">
+               <children>
+                  <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/borratina4.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#d67b1c" strokeType="OUTSIDE" strokeWidth="0.0" text="Borratina">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="Button" />
+               </styleClass>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #feca57;">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quiniela#32">
+                     <font>
+                        <Font name="System Bold Italic" size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox fx:id="hbCaja" alignment="CENTER_LEFT" layoutX="-2.0" layoutY="251.0" onMouseClicked="#openFormCaja" prefHeight="46.0" prefWidth="200.0" style="-fx-border-color: #a40909;" stylesheets="@Panel.css">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/caja-registradora%20(1).png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#d67b1c" strokeType="OUTSIDE" strokeWidth="0.0" text="Caja">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="Button" />
+               </styleClass>
+            </HBox>
+            <HBox fx:id="hbCargaDatos" alignment="CENTER_LEFT" layoutX="-2.0" layoutY="318.0" onMouseClicked="#openFormCagaDatos" prefHeight="46.0" prefWidth="200.0" style="-fx-border-color: #a40909;" stylesheets="@Panel.css">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/datos.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#d67b1c" strokeType="OUTSIDE" strokeWidth="0.0" text="Carga_Datos">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="Button" />
+               </styleClass>
+            </HBox>
+            <HBox fx:id="hbReporte" alignment="CENTER_LEFT" layoutX="-2.0" layoutY="385.0" onMouseClicked="#openFormReporte" prefHeight="46.0" prefWidth="200.0" style="-fx-border-color: #a40909;" stylesheets="@Panel.css">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/reporte4.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text fill="#d67b1c" strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte">
+                     <font>
+                        <Font name="System Bold Italic" size="20.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="40.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+               <styleClass>
+                  <String fx:value="btns" />
+                  <String fx:value="Button" />
+               </styleClass>
+            </HBox>
+         </children>
+      </AnchorPane>
+      <VBox fx:id="panelPrincipal" prefHeight="787.0" prefWidth="855.0" style="-fx-background-color: transparent;" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox prefHeight="75.0" prefWidth="932.0" style="-fx-background-color: #feca57;">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/loteria2.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="lblFecha" contentDisplay="RIGHT" text="Fecha">
+                           <HBox.margin>
+                              <Insets left="30.0" right="150.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="txtHora2" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial Black" size="36.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btnLogout" mnemonicParsing="false" onMouseClicked="#cerrarPrograma" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-family: Quicksan; -fx-font-weight: bolder;" styleClass="Button" stylesheets="@Panel.css" text="Logout">
+                           <HBox.margin>
+                              <Insets left="400.0" />
+                           </HBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></Button>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="55.0" prefWidth="932.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <DatePicker fx:id="dp" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Buscar">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txtBuscar" prefHeight="31.0" prefWidth="273.0">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <TableView fx:id="tblBoleta" onMouseClicked="#seleccionarBoleta" prefHeight="298.0" prefWidth="932.0" stylesheets="@tabla.css">
+              <columns>
+                <TableColumn fx:id="colBId" prefWidth="75.0" text="id" />
+                <TableColumn fx:id="colBFecha" prefWidth="149.0" text="fecha" />
+                  <TableColumn fx:id="colBNombre" prefWidth="130.0" text="nombre" />
+                  <TableColumn fx:id="colBTotal" prefWidth="116.0" text="total" />
+                  <TableColumn fx:id="colBEstado" prefWidth="72.0" text="estado" />
+                  <TableColumn fx:id="colBPagado" prefWidth="67.0" text="pagado" />
+                  <TableColumn fx:id="colBFechaPago" prefWidth="153.0" text="fecha Pago" />
+                  <TableColumn fx:id="colBTotalPago" prefWidth="157.0" text="TotalPago" />
+              </columns>
+            </TableView>
+            <HBox prefHeight="18.0" prefWidth="932.0" />
+            <TableView fx:id="tblJugada" prefHeight="242.0" prefWidth="932.0" stylesheets="@tabla.css">
+              <columns>
+                <TableColumn fx:id="colJId" prefWidth="62.0" text="id" />
+                <TableColumn fx:id="colJTurno" prefWidth="122.0" text="turno" />
+                  <TableColumn fx:id="colJQuiniela" prefWidth="127.0" text="quiniela" />
+                  <TableColumn fx:id="colJNumero" prefWidth="305.0" text="numero" />
+                  <TableColumn fx:id="colJPosicion" minWidth="0.0" prefWidth="96.0" text="posicion" />
+                  <TableColumn fx:id="colJMonto" prefWidth="118.0" text="monto" />
+                  <TableColumn fx:id="colJEstado" text="estado" />
+              </columns>
+            </TableView>
+            <HBox alignment="CENTER_LEFT" prefHeight="58.0" prefWidth="791.0">
+               <children>
+                  <Button fx:id="btnPagar" mnemonicParsing="false" onMouseClicked="#generarPago" prefHeight="31.0" prefWidth="296.0" style="-fx-background-color: #FF4100;" styleClass="Button" stylesheets="@Panel.css" text="Pagar" textFill="#70eb18">
+                     <font>
+                        <Font name="Arial Bold Italic" size="22.0" />
+                     </font>
+                  </Button>
+                  <Text fx:id="lblTotal" strokeType="OUTSIDE" strokeWidth="0.0" text="Total:  $">
+                     <HBox.margin>
+                        <Insets left="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txtTotal" prefHeight="51.0" prefWidth="193.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="btnAnular" mnemonicParsing="false" onMouseClicked="#anularBoleta" prefHeight="44.0" prefWidth="172.0" style="-fx-background-color: #FFD600;" styleClass="Button" stylesheets="@Panel.css" text="ANULAR!!" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+   </padding>
+</HBox>
