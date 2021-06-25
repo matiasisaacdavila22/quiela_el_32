@@ -54,7 +54,7 @@ ticket.AddCabecera(""+fecha.format(date) + " " + hora);//.format(date));
 
 ticket.AddCabecera(ticket.DarEspacio());
 
-ticket.AddCabecera("** EL 32 **");
+ticket.AddCabecera("** EL 33 **");
 
 ticket.AddCabecera(ticket.DarEspacio());
 

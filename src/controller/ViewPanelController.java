@@ -151,8 +151,8 @@ public class ViewPanelController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.herramientas = new herramietasTest(); //simuladores de jugadas
-        this.herramientas.crearJugadas(50);
+       // this.herramientas = new herramietasTest(); //simuladores de jugadas
+        //this.herramientas.crearJugadas(50);
         this.btnAnular.setVisible(false);
         this.btnPagar.setVisible(false);
         this.txtTotal.setVisible(false);
