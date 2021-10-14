@@ -42,6 +42,9 @@ import javafx.stage.Stage;
 import java.util.Timer;
 import java.util.TimerTask;
 import javafx.scene.text.Text;
+import utils.Config;
+    //////////////////////////////////////////////////////// 08/08/2021
+    import static utils.Config.*;
 
 public class ViewQuinielaController implements Initializable {
 
@@ -188,38 +191,38 @@ public class ViewQuinielaController implements Initializable {
                 case UP: this.txtNombre.requestFocus(); ;break;
                 case DOWN: this.txtQuiniela1.requestFocus(); ;break;
                 case ENTER:if(this.validarTurno(txtTurno1.getText()))this.txtQuiniela1.requestFocus();break;
-                     case F1 :  if(turnos.contains("11")){turnos.remove("11");
+                     case F1 :  if(turnos.contains(primera)){turnos.remove(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("11");
+                           }else { turnos.add(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                  this.txtNumero1.requestFocus();}break;
   
-                 case F2 :  if(turnos.contains("14")){turnos.remove("14");
+                 case F2 :  if(turnos.contains(segunda)){turnos.remove(segunda);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("14");
+                           }else { turnos.add(segunda);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F3 :  if(turnos.contains("17")){turnos.remove("17");
+                 case F3 :  if(turnos.contains(tercera)){turnos.remove(tercera);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("17");
+                           }else { turnos.add(tercera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F4 :  if(turnos.contains("21")){turnos.remove("21");
+                 case F4 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("21");
+                           }else { turnos.add(cuarta);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
@@ -402,38 +405,38 @@ public class ViewQuinielaController implements Initializable {
                          this.cerrarVentana(); break;         
                                }  
                 case SPACE:this.cargarBoleta();break;
-                            case F1 :  if(turnos.contains("11")){turnos.remove("11");
+                            case F1 :  if(turnos.contains(primera)){turnos.remove(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("11");
+                           }else { turnos.add(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                  this.txtNumero1.requestFocus();}break;
   
-                 case F2 :  if(turnos.contains("14")){turnos.remove("14");
+                 case F2 :  if(turnos.contains(segunda)){turnos.remove(segunda);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("14");
+                           }else { turnos.add(segunda);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F3 :  if(turnos.contains("17")){turnos.remove("17");
+                 case F3 :  if(turnos.contains(tercera)){turnos.remove(tercera);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("17");
+                           }else { turnos.add(tercera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F4 :  if(turnos.contains("21")){turnos.remove("21");
+                 case F4 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
-                           }else { turnos.add("21");
+                           }else { turnos.add(cuarta);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
@@ -661,7 +664,7 @@ private void prepararRdoblona(String nombre, String numero1, String numero2, int
                               
                 for(int i=0;i<quinielas.size();i++){
                    for(int j=0;j<turnos.size();j++){     
-                if(!(((turnos.get(j).equals("11"))||(turnos.get(j).equals("17"))) && (quinielas.get(i).equals("O")))){
+                if(!(((turnos.get(j).equals(primera))||(turnos.get(j).equals("17"))) && (quinielas.get(i).equals("O")))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quinielas.get(i), turnos.get(j),false); 
                 Jugada jugada2=new  Jugada(tipo, numero2, cifras, posicion2, monto, quinielas.get(i), turnos.get(j), false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
@@ -733,7 +736,7 @@ public boolean esNumero(String val){
         }
 
     private void setPosicionTodas() {
-             this.txtPosicion1.setText("11-14-17-21");
+             this.txtPosicion1.setText(primera+"-"+segunda+"-"+tercera+"-"+cuarta);
     }
 
     @FXML
@@ -894,7 +897,7 @@ if("R".equals(tipo)){
 }else if("S".equals(tipo)) {  
    for(String quiniela : quinielas){
         for(String turno : turnos){//restriccion de jugada oros no juega a las 11hs ni a las 17hs
-            if(!(quiniela.equals("O") && ((turno.equals("11") || turno.equals("17"))))){
+            if(!(quiniela.equals("O") && ((turno.equals(primera) || turno.equals(tercera))))){
                 totalResumen = totalResumen + monto*numeros.length*posiciones.length;
             }
         }
@@ -1101,10 +1104,10 @@ public ArrayList<String> validarHoraiosTurno(String[] turno) {
           if( todosTurnos.contains(s) && !misTurnos.contains(s))misTurnos.add(s);
          }
         else if("**".equals(s)){
-         if(todosTurnos.contains("11"))misTurnos.add("11");
-         if(todosTurnos.contains("14"))misTurnos.add("14");
-         if(todosTurnos.contains("17"))misTurnos.add("17");
-         if(todosTurnos.contains("21"))misTurnos.add("21");
+         if(todosTurnos.contains(primera))misTurnos.add(primera);
+         if(todosTurnos.contains(segunda))misTurnos.add(segunda);
+         if(todosTurnos.contains(tercera))misTurnos.add(tercera);
+         if(todosTurnos.contains(cuarta))misTurnos.add(cuarta);
          return misTurnos;
           }
         }  
@@ -1116,33 +1119,33 @@ private ArrayList<String> setHoras() {
        ArrayList turnosHabilitados2 = new ArrayList();
        String horaActual = jugadaController.hora();
         try {
-                DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                  Date horaMatutina = dateFormat.parse("12:00");
-                  Date horaVespertina =dateFormat.parse("14:30");
-                  Date horaTarde =dateFormat.parse("17:30");
-                  Date horaNocturna= dateFormat.parse("21:00");
+                DateFormat dateFormat = new SimpleDateFormat(FH);
+                  Date horaMatutina = dateFormat.parse(FH_PRIMERA);
+                  Date horaVespertina =dateFormat.parse(FH_SEGUNDA);
+                  Date horaTarde =dateFormat.parse(FH_TERCERA);
+                  Date horaNocturna= dateFormat.parse(FH_CUARTA);
                   Date hora= dateFormat.parse(horaActual);
                                       
                 if (hora.before(horaMatutina)){
-                      turnosHabilitados2.add("11");
-                      turnosHabilitados2.add("14");
-                      turnosHabilitados2.add("17");
-                      turnosHabilitados2.add("21");
+                      turnosHabilitados2.add(primera);
+                      turnosHabilitados2.add(segunda);
+                      turnosHabilitados2.add(tercera);
+                      turnosHabilitados2.add(cuarta);
                       return turnosHabilitados2;
                 }
                else if (hora.before(horaVespertina)){
-                      turnosHabilitados2.add("14");
-                      turnosHabilitados2.add("17");
-                      turnosHabilitados2.add("21");
+                      turnosHabilitados2.add(segunda);
+                      turnosHabilitados2.add(tercera);
+                      turnosHabilitados2.add(cuarta);
                       return turnosHabilitados2;
                 }
               else if (hora.before(horaTarde)){
-                      turnosHabilitados2.add("17");
-                      turnosHabilitados2.add("21");
+                      turnosHabilitados2.add(tercera);
+                      turnosHabilitados2.add(cuarta);
                       return turnosHabilitados2;
                 }
               else if (hora.before(horaNocturna)){
-                    turnosHabilitados2.add("21");
+                    turnosHabilitados2.add(cuarta);
                     return turnosHabilitados2;
                  }
                 
@@ -1453,7 +1456,7 @@ private void generarJugadas(ObservableList<ResumenJugada>jugadasTabla){
     
 }
 private void generarJugadasSimples(String nombre, String [] numeros, int monto, String [] posiciones, String [] quinielas, String [] turnos){ 
-  
+    int tipo=1;
     for(String na : this.numeros){
       int cifras=na.length();
       ArrayList<Jugada> aux = jugadaController.generarJugada(Nposiciones, this.quinielas, this.turnos, nombre, tipo, na, cifras, monto); 
@@ -1472,7 +1475,7 @@ private void generarJugadasDobles(String nombre, String [] numeros, int monto, S
   String hora=jugadaController.hora();
   for(String quiniela : quinielas){
      for(String turno : turnos){     
-        if(!(((turno.equals("11"))||(turno.equals("17"))) && (quiniela.equals("O")))){
+        if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals("O")))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quiniela, turno,false); 
                 Jugada jugada2=new  Jugada(tipo, numero2, cifras, posicion2, monto, quiniela, turno, false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
@@ -1486,31 +1489,31 @@ private void generarJugadasDobles(String nombre, String [] numeros, int monto, S
 private boolean setHoras(Jugada j) {
          String horaActual = jugadaController.hora();
         try {
-                DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-                  java.util.Date horaMatutina = dateFormat.parse("12:00");
-                  java.util.Date horaVespertina =dateFormat.parse("14:30");
-                  java.util.Date horaTarde =dateFormat.parse("17:15");
-                  java.util.Date horaNocturna= dateFormat.parse("21:00");
+                DateFormat dateFormat = new SimpleDateFormat(FH);
+                  java.util.Date horaMatutina = dateFormat.parse(FH_PRIMERA);
+                  java.util.Date horaVespertina =dateFormat.parse(FH_SEGUNDA);
+                  java.util.Date horaTarde =dateFormat.parse(FH_TERCERA);
+                  java.util.Date horaNocturna= dateFormat.parse(FH_CUARTA);
                   java.util.Date hora= dateFormat.parse(horaActual);
                 
-                if(j.getTurno().contains("11")){   
+                if(j.getTurno().contains(primera)){   
                     
                   if (hora.before(horaMatutina)){
                       return true;
                       } else   return false;}
         
-               else if (j.getTurno().contains("14")){
+               else if (j.getTurno().contains(segunda)){
                     if (hora.before(horaVespertina)){
                         
                       return true;
                     } else   return false;}  
                
-               else if (j.getTurno().contains("17")){
+               else if (j.getTurno().contains(tercera)){
                     if (hora.before(horaTarde)){
                       return true;
                     } else   return false;} 
                 
-               else if (j.getTurno().contains("21")){
+               else if (j.getTurno().contains(cuarta)){
                     if (hora.before(horaNocturna)){
                       return true;
                     } else   return false;} 
@@ -1628,13 +1631,13 @@ for(ResumenJugada r : resumens){
   
   String [] turnos = this.limpiarFormato(resultado[2]);
   for(String t : turnos){this.turnos.add(t);}
-    if(this.turnos.contains("11")){
+    if(this.turnos.contains(Config.primera)){
         primera.add(r);}
-    if(this.turnos.contains("14")){
+    if(this.turnos.contains(Config.segunda)){
         matutina.add(r);} 
-    if(this.turnos.contains("17")){
+    if(this.turnos.contains(Config.tercera)){
         tarde.add(r);} 
-    if(this.turnos.contains("21")){
+    if(this.turnos.contains(Config.cuarta)){
         nocturna.add(r);}   
 }
 if(!primera.isEmpty()){
@@ -1844,7 +1847,7 @@ ticket.ImprimirDocumento();
     }
       public String hora() {
         Date hora = new Date();
-        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+        SimpleDateFormat formatoHora = new SimpleDateFormat(FH);
         String horaFormato = formatoHora.format(hora);
         return horaFormato;
 
@@ -1994,23 +1997,3 @@ else if(this.estado.contains("EDITAR")){
 } 
 
 }
-    
-   
-
-
-        
-
- 
-  
-
-    
-
-     
-
-
-    
- 
-
-
-
-

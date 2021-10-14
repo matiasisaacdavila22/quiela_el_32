@@ -181,13 +181,13 @@ public class PagoController {
            if(!boleta.isPagado()){
               ArrayList<Jugada> jugadas = new ArrayList();
               jugadas = jugadaController.buscarJugadas(boleta.getId());
-              for(Jugada jugada : jugadas){
+              for(Jugada jugada : jugadas){                    
                   if(jugadaController.jugadaGano(jugada)){
                       if(jugada.getTipo()== 1){
                           total = total + jugadaController.calcularPremio(jugada);
                       }else if(jugada.getTipo() == 2){
-                          if(!idRedoblona.contains(jugada.idRedoblona)){
-                              idRedoblona.add(jugada.idRedoblona);
+                          if(!idRedoblona.contains(jugada.getIdRedoblona())){
+                              idRedoblona.add(jugada.getIdRedoblona());
                               total = total + jugadaController.calcularPremio(jugada);
                           }
                       }

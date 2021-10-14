@@ -32,8 +32,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import jdk.nashorn.internal.runtime.JSType;
 import model.Ganada;
 import model.Jugada;
+    //////////////////////////////////////////////////////// 08/08/2021
+    import static utils.Config.*;
 
 
 /**
@@ -141,6 +144,7 @@ public class ViewCargaDatos2Controller implements Initializable {
     @FXML
     private Button btnImprimirStracto;
     private boolean changes;
+
     /**
      * Initializes the controller class.
      */
@@ -152,7 +156,7 @@ public class ViewCargaDatos2Controller implements Initializable {
         ganadaController = new GanadaController();
         boletaController = new BoletaController();
         this.quinielas = new String[]{"N", "P", "F", "E", "C", "O"};
-        this.turnos = new String[]{"11", "14", "17", "21"};
+        this.turnos = new String[]{primera, segunda, tercera, cuarta};
         this.quiniela = 0;
         this.turno = 0;
         this.lblTurnos = new HBox[]{lblMatutina,lblVespertina,lblTarde,lblNocturna};
@@ -418,9 +422,12 @@ public void setFecha(){
         }
     }
     
+    @SuppressWarnings("null")
     private void agregarNumero(String numero){
-           
-             posicion = listQuinielas[quiniela].size()+1;
+           if(listQuinielas[quiniela].size()<20){
+                 
+              posicion = listQuinielas[quiniela].size()+1;
+        
              Ganada ganada = new Ganada(numero, posicion, quinielas[quiniela], turnos[turno], this.fecha);
              this.listQuinielas[quiniela].add(ganada);            
              this.tblQuinielas[quiniela].setItems(this.listQuinielas[quiniela]);
@@ -436,24 +443,31 @@ public void setFecha(){
         else{
             txtNumero.setVisible(false);
         }
-       
+      }
     }
        
     private void modificarNumero(String numero){  
              posicion = this.tblQuinielas[quiniela].getSelectionModel().getSelectedIndex();
+             System.err.println(posicion+1);
+             System.err.println("la lista es de :"+listQuinielas[quiniela].size());
+             if(posicion < listQuinielas[quiniela].size()){
              this.listQuinielas[quiniela].get(posicion).setNumero(numero);  
              this.tblQuinielas[quiniela].refresh();
              Ganada updateGanada = this.listQuinielas[quiniela].get(posicion);
+                 System.out.println("get posicion :"+updateGanada.getPosicion());
              ganadaController.actualizarGanada(updateGanada); 
              this.changes = true; 
-         
-             this.txtNumero.setText("");
-//             this.txtNumero.requestFocus();
-//           this.tblQuinielas[quiniela].getSelectionModel().setSelection(posicion);
-             
-            this.estado = "agregar";  
+             this.txtNumero.setText("");   
+             if(posicion +1 < listQuinielas[quiniela].size()){
+                 this.tblQuinielas[quiniela].getSelectionModel().selectNext();
+             }else{
+             this.estado = "agregar";  
+             } 
+             }else{
+             this.estado = "agregar";  
+             this.agregarNumero(numero);
            
-
+             }
            } 
 
     

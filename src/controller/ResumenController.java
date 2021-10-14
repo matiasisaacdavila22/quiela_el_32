@@ -32,15 +32,19 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
+import org.apache.poi.hwpf.model.FileInformationBlock;
+import static org.apache.poi.hwpf.model.FileInformationBlock.logger;
 
 /**
  *
  * @author juamn
  */
 public class ResumenController {
+
     private JugadaController jugadaController;
-    private ArrayList<Resumen>resumenes;
- 
+    private ArrayList<Resumen> resumenes;
+
 //   public ArrayList<Resumen> crearResumen(ArrayList<Jugada>jugadas){
 //        ArrayList<Integer> boletas = new ArrayList();
 //        
@@ -75,21 +79,20 @@ public class ResumenController {
 //      boletas = null;
 //   return resumenf;
 //   }    
-    
-   public ObservableList<Resumen> crearResumen(int idboleta){
-       jugadaController = new JugadaController(); 
-       ArrayList<Jugada> jugadas = jugadaController.buscarJugadas(idboleta);
-        
-       ObservableList<Resumen> resumen = FXCollections.observableArrayList();
-             
-       resumen = this.crearResumenBoleta(jugadas);           
-       return resumen;
-   }
-               
- public ObservableList<Resumen> crearResumenBoleta(ArrayList<Jugada> jugadas){
+    public ObservableList<Resumen> crearResumen(int idboleta) {
+        jugadaController = new JugadaController();
+        ArrayList<Jugada> jugadas = jugadaController.buscarJugadas(idboleta);
+
+        ObservableList<Resumen> resumen = FXCollections.observableArrayList();
+
+        resumen = this.crearResumenBoleta(jugadas);
+        return resumen;
+    }
+
+    public ObservableList<Resumen> crearResumenBoleta(ArrayList<Jugada> jugadas) {
         this.resumenes = new ArrayList();
         ObservableList<Resumen> resumenes = FXCollections.observableArrayList();
-                          
+
         ArrayList<String> numeros = new ArrayList();
         ArrayList<Jugada> aux = new ArrayList();
         ArrayList<Jugada> js = new ArrayList();
@@ -100,29 +103,38 @@ public class ResumenController {
         ArrayList<String> turnos = new ArrayList();
         ArrayList<String> quinielas = new ArrayList();
         ArrayList<String> posiciones = new ArrayList();
-        boolean g=false;
-       
-        
-       for(Jugada j : jugadas){
-           if(j.getTipo()==1)js.add(j);
-           if(j.getTipo()==2)jr.add(j);
-           if(j.getTipo()==3)jb.add(j);
-           if(j.getTipo()==5)jb.add(j); // por el momento no distinguiremos entre las booratins
-           if(j.getTipo()==8)jb8.add(j);
-           }
-       
-if(!js.isEmpty()){
-ArrayList<Resumen>r;
- r = this.generarResumenSimple(js);
- r.stream().forEach((n)->resumenes.add(n));
+        boolean g = false;
+
+        for (Jugada j : jugadas) {
+            if (j.getTipo() == 1) {
+                js.add(j);
+            }
+            if (j.getTipo() == 2) {
+                jr.add(j);
+            }
+            if (j.getTipo() == 3) {
+                jb.add(j);
+            }
+            if (j.getTipo() == 5) {
+                jb.add(j); // por el momento no distinguiremos entre las booratins
+            }
+            if (j.getTipo() == 8) {
+                jb8.add(j);
+            }
         }
 
-if(!jr.isEmpty()){ 
- ArrayList<Resumen>d;
- d = this.generarResumenDoble(jr);
- d.stream().forEach((n)->resumenes.add(n));
-    
- }
+        if (!js.isEmpty()) {
+            ArrayList<Resumen> r;
+            r = this.generarResumenSimple(js);
+            r.stream().forEach((n) -> resumenes.add(n));
+        }
+
+        if (!jr.isEmpty()) {
+            ArrayList<Resumen> d;
+            d = this.generarResumenDoble(jr);
+            d.stream().forEach((n) -> resumenes.add(n));
+
+        }
 
 //if(!jb.isEmpty()){  
 // ArrayList<Resumen>r;
@@ -136,167 +148,182 @@ if(!jr.isEmpty()){
 // r.stream().forEach((n)->resumenes2.add(n));
 //    
 // }
-return resumenes;
- }
- 
-public  ArrayList<Resumen> generarResumenSimple( ArrayList<Jugada>js){
-   ArrayList<String>numeros = new ArrayList();
-   ArrayList<String>turnos = new ArrayList();
-   ArrayList<String>quinielas = new ArrayList();
-   ArrayList<Integer>posiciones = new ArrayList();
-   ArrayList<Integer>ids = new ArrayList();
-   ArrayList<Resumen>resumenes3 = new ArrayList();
-          boolean g=false;
-           
-   for(Jugada i : js){
-           if(!numeros.contains(i.getNumero())){
-               numeros.add(i.getNumero());
-               ids.add(i.getIdJugada());
-               turnos.add(i.getTurno());
-               quinielas.add(i.getQuiniela());
-               if(!posiciones.contains(i.getPosicion()))posiciones.add(i.getPosicion());
-               for(Jugada j2 : js){
-                   if(j2.getNumero().equals(i.getNumero())){
-                       if(!ids.contains(j2.getIdJugada()))ids.add(j2.getIdJugada());
-                       if(!turnos.contains(j2.getTurno()))turnos.add(j2.getTurno());
-                       if(!quinielas.contains(j2.getQuiniela()))quinielas.add(j2.getQuiniela());
-                       if(!posiciones.contains(j2.getPosicion()))posiciones.add(j2.getPosicion());
-                       g=g || j2.isGano();
-                     }
-               }
-               int id=i.getIdBoleta();
-               String numero =i.getNumero();
-                StringBuilder sb = new StringBuilder();
-               for(String t : turnos){
-                   sb.append(t);
-                   sb.append(" ");
-               }
-               String turno=sb.toString();
-              
-               StringBuilder sb2 = new StringBuilder();
-               for(String q : quinielas){
-                   sb2.append(q);
-                   sb2.append(" ");
-               }
-               String quiniela=sb2.toString();
-               double monto=i.getMonto();
-               Date fecha= i.getFecha();
-               boolean gano = g;
-               
-               StringBuilder sb3 = new StringBuilder();
-               for(Integer p : posiciones){
-                   sb3.append(""+p);
-                   sb3.append("-");
-               }
-               String posicion = sb3.toString();
-               String nombre = i.getNombre();
-               StringBuilder idsj = new StringBuilder();
-               for(Integer nn : ids){
-                   idsj.append(String.valueOf(nn));
-                   idsj.append("-");
-                   }
-               int tipo = i.getTipo();
-               String ss=idsj.toString();
-               Resumen resumen = new Resumen (id,  numero,  turno, quiniela,  monto,  fecha,  gano, posicion, nombre,ss, tipo); 
-               resumenes3.add(resumen);
-               ids.clear();
-        turnos.clear();
-        quinielas.clear();
-        g=false;
-        }
+        return resumenes;
+    }
 
-       }
-   return resumenes3;
-}
-public ArrayList<Resumen> generarResumenDoble( ArrayList<Jugada>jr){
-   ArrayList<String>numeros = new ArrayList();
-    ArrayList<String>turnos = new ArrayList();
-     ArrayList<String>quinielas = new ArrayList();
-       ArrayList<Integer>idj = new ArrayList();
-         ArrayList<Resumen>resumenes = new ArrayList();
-              
-   ArrayList<Integer>idr = new ArrayList();
-          boolean g=false;
-          boolean p=false;
-      for(Jugada i : jr){
-         
-          if(!idr.contains(i.getIdRedoblona())){
-            
-               Jugada k=this.buscarPareja(i, jr);
-       
-               idr.add(i.getIdRedoblona()); 
-               numeros.add(i.getNumero());
-               numeros.add(k.getNumero());
-               idj.add(i.getIdJugada());
-               idj.add(k.getIdJugada());
-               turnos.add(i.getTurno());
-               quinielas.add(i.getQuiniela());
-                g = (g || (i.isGano() && k.isGano()));
-               
-                for(Jugada j2 : jr){
-                   if(!idr.contains(j2.getIdRedoblona())){
-                       
-                   if(this.sePuedenSolapar(j2, i, jr)){
-                   idr.add(j2.getIdRedoblona());
-                   Jugada k2 = this.buscarPareja(j2,jr);
-                     idj.add(j2.getIdJugada());
-                     idj.add(k2.getIdJugada());
-                       if(!turnos.contains(j2.getTurno()))turnos.add(j2.getTurno());
-                       if(!quinielas.contains(j2.getQuiniela()))quinielas.add(j2.getQuiniela());
-                       g = (g || (j2.isGano() && k2.isGano()));
+    public ArrayList<Resumen> generarResumenSimple(ArrayList<Jugada> js) {
+        ArrayList<String> turnos = new ArrayList();
+        ArrayList<String> quinielas = new ArrayList();
+        ArrayList<Integer> posiciones = new ArrayList();
+        ArrayList<Integer> ids = new ArrayList();
+        ArrayList<Resumen> resumenes3 = new ArrayList();
+        boolean g = false;
+
+        for (Jugada i : js) {
+            if (!ids.contains(i.getIdJugada())) {
+                ids.add(i.getIdJugada());
+                turnos.add(i.getTurno());
+                quinielas.add(i.getQuiniela());
+                if (!posiciones.contains(i.getPosicion())) {
+                    posiciones.add(i.getPosicion());
+                }
+                for (Jugada j2 : js) {
+                    if ((j2.getNumero().equals(i.getNumero())) && (i.getMonto() == j2.getMonto())) {
+                        if (!ids.contains(j2.getIdJugada())) {
+                            ids.add(j2.getIdJugada());
                         }
-               }
-               }
-               int id= i.getIdBoleta();
+                        if (!turnos.contains(j2.getTurno())) {
+                            turnos.add(j2.getTurno());
+                        }
+                        if (!quinielas.contains(j2.getQuiniela())) {
+                            quinielas.add(j2.getQuiniela());
+                        }
+                        if (!posiciones.contains(j2.getPosicion())) {
+                            posiciones.add(j2.getPosicion());
+                        }
+                        g = g || j2.isGano();
+                    }
+                }
+                int id = i.getIdBoleta();
+                String numero = i.getNumero();
+                StringBuilder sb = new StringBuilder();
+                for (String t : turnos) {
+                    sb.append(t);
+                    sb.append(" ");
+                }
+                String turno = sb.toString();
+
+                StringBuilder sb2 = new StringBuilder();
+                for (String q : quinielas) {
+                    sb2.append(q);
+                    sb2.append(" ");
+                }
+                String quiniela = sb2.toString();
+                double monto = i.getMonto();
+                Date fecha = i.getFecha();
+                boolean gano = g;
+
+                StringBuilder sb3 = new StringBuilder();
+                for (Integer p : posiciones) {
+                    sb3.append("" + p);
+                    sb3.append("-");
+                }
+                String posicion = sb3.toString();
+                String nombre = i.getNombre();
+                StringBuilder idsj = new StringBuilder();
+                for (Integer nn : ids) {
+                    idsj.append(String.valueOf(nn));
+                    idsj.append("-");
+                }
+                int tipo = i.getTipo();
+                String ss = idsj.toString();
+                Resumen resumen = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posicion, nombre, ss, tipo);
+                resumenes3.add(resumen);
+                turnos.clear();
+                quinielas.clear();
+                g = false;
+            }
+
+        }
+        return resumenes3;
+    }
+
+    public ArrayList<Resumen> generarResumenDoble(ArrayList<Jugada> jr) {
+        ArrayList<String> numeros = new ArrayList();
+        ArrayList<String> turnos = new ArrayList();
+        ArrayList<String> quinielas = new ArrayList();
+        ArrayList<Integer> idj = new ArrayList();
+        ArrayList<Resumen> resumenes = new ArrayList();
+
+        Stream<Jugada> jugadaStream = jr.stream();
+          jugadaStream.forEach(jugada -> System.out.println(jugada.getNumero()));
+                  
+             
+        ArrayList<Integer> idr = new ArrayList();
+        boolean g = false;
+        boolean p = false;
+        
+        for (Jugada i : jr) {
+            if (!idr.contains(i.getIdRedoblona())) {
+                Jugada k = this.buscarPareja(i, jr);
+               idr.add(i.getIdRedoblona());
+                numeros.add(i.getNumero());
+                numeros.add(k.getNumero());
+                idj.add(i.getIdJugada());
+               // idj.add(k.getIdJugada());
+                turnos.add(i.getTurno());
+                quinielas.add(i.getQuiniela());
+                g = (g || (i.isGano() && k.isGano()));
+
+                for (Jugada j2 : jr) {
+                    if (!idr.contains(j2.getIdRedoblona())) {
+
+                        if (this.sePuedenSolapar(j2, i, jr)) {
+                            idr.add(j2.getIdRedoblona());
+                            Jugada k2 = this.buscarPareja(j2, jr);
+                            idj.add(j2.getIdJugada());
+                            idj.add(k2.getIdJugada());
+                            if (!turnos.contains(j2.getTurno())) {
+                                turnos.add(j2.getTurno());
+                            }
+                            if (!quinielas.contains(j2.getQuiniela())) {
+                                quinielas.add(j2.getQuiniela());
+                            }
+                            g = (g || (j2.isGano() && k2.isGano()));
+                        }
+                    }
+                }
+                int id = i.getIdBoleta();
                 StringBuilder sbn = new StringBuilder();
                 sbn.append(i.getNumero());
-                 sbn.append(" ");
-                 sbn.append(k.getNumero());
-                 
-               String numero = sbn.toString();
+                sbn.append("-");
+                sbn.append(k.getNumero());
+
+                String numero = sbn.toString();
                 StringBuilder sb = new StringBuilder();
-               for(String t : turnos){
-                   sb.append(t);
-                   sb.append(" ");
-               }
-               String turno=sb.toString();
-              
-               StringBuilder sb2 = new StringBuilder();
-               for(String q : quinielas){
-                   sb2.append(q);
-                   sb2.append(" ");
-               }
-               String quiniela=sb2.toString();
-               double monto=i.getMonto();
-               Date fecha= i.getFecha();
-               boolean gano = g;
-               boolean pago = p;
-               StringBuilder sbp = new StringBuilder();
-                 sbp.append(i.getPosicion());
-                 sbp.append(" ");
-                 sbn.append(k.getPosicion());
-              String posicion = sbp.toString();
-               String nombre = i.getNombre();
-                 StringBuilder idsj = new StringBuilder();
-               for(Integer nn : idj){
-                   idsj.append(String.valueOf(nn));
-                   idsj.append("-");
-                   }
-               int tipo = i.getTipo();
-               String ss=idsj.toString();
-               Resumen resumen = new Resumen (id,  numero,  turno, quiniela,  monto,  fecha,  gano, posicion, nombre, ss, tipo); 
-               resumenes.add(resumen);
-                 g=false;
-               
-           }
-        idj.clear();
-        turnos.clear();
-        quinielas.clear();
-      
-       }           
-           
-      return resumenes;  
-}
+                for (String t : turnos) {
+                    sb.append(t);
+                    sb.append(" ");
+                }
+                String turno = sb.toString();
+
+                StringBuilder sb2 = new StringBuilder();
+                for (String q : quinielas) {
+                    sb2.append(q);
+                    sb2.append(" ");
+                }
+                String quiniela = sb2.toString();
+                double monto = i.getMonto();
+                Date fecha = i.getFecha();
+                boolean gano = g;
+                boolean pago = p;
+                StringBuilder sbp = new StringBuilder();
+                sbp.append(i.getPosicion());
+                sbp.append(" ");
+                //sbn.append(k.getPosicion());
+                sbp.append(k.getPosicion());
+                String posicion = sbp.toString();
+                String nombre = i.getNombre();
+                StringBuilder idsj = new StringBuilder();
+                for (Integer nn : idj) {
+                    idsj.append(String.valueOf(nn));
+                    idsj.append("-");
+                }
+                int tipo = i.getTipo();
+                String ss = idsj.toString();
+                Resumen resumen = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posicion, nombre, ss, tipo);
+                resumenes.add(resumen);
+                g = false;
+
+            }
+            idj.clear();
+            turnos.clear();
+            quinielas.clear();
+
+        }
+
+        return resumenes;
+    }
 //private  ArrayList<Resumen> generarResumenBorratina(ArrayList<Jugada>jb){
 //  JugadaController jugadaC=new JugadaController();
 //   ArrayList<String>numeros = new ArrayList();
@@ -535,7 +562,6 @@ public ArrayList<Resumen> generarResumenDoble( ArrayList<Jugada>jr){
 // }
 //return resumenes2;
 // }
-
 //public  ArrayList<Resumen> generarResumenSimpleJugada( ArrayList<Jugada>js){
 //         ArrayList<Resumen>resumenes3 = new ArrayList();
 //          JugadaController jugadaController = new JugadaController();
@@ -639,7 +665,6 @@ public ArrayList<Resumen> generarResumenDoble( ArrayList<Jugada>jr){
 //           
 // return resumenes;  
 //}
-
 //private  ArrayList<Resumen> generarResumenBorratinaJugada(ArrayList<Jugada>jb){
 //    System.out.println("estamos entrando en resumen para booorauna de 3 y borratinad de 5");
 //  JugadaController jugadaC=new JugadaController();
@@ -714,7 +739,6 @@ public ArrayList<Resumen> generarResumenDoble( ArrayList<Jugada>jr){
 //             }
 //      return resumenes;      
 // }
-
 //private  ArrayList<Resumen> generarResumenBorratina8Jugada(ArrayList<Jugada>jb){
 //  ArrayList<String>numeros = new ArrayList();
 //  JugadaController jugadaC = new JugadaController();
@@ -804,16 +828,15 @@ public ArrayList<Resumen> generarResumenDoble( ArrayList<Jugada>jr){
 //             }
 //      return resumenes;      
 // }    
-  
-
-public Jugada buscarPareja(Jugada jugada , ArrayList<Jugada>jugadas){
-     for(Jugada j : jugadas){
-         if(jugada.getIdRedoblona()==j.getIdRedoblona() && !jugada.getNumero().equals(j.getNumero())){
-             Jugada k=j;
-             return k;
-         }
-     } return null;
-}
+    public Jugada buscarPareja(Jugada jugada, ArrayList<Jugada> jugadas) {
+        for (Jugada j : jugadas) {
+            if (jugada.getIdRedoblona() == j.getIdRedoblona() && jugada.getIdJugada() != j.getIdJugada()) {
+                Jugada k = j;
+                return k;
+            }
+        }
+        return null;
+    }
 //public void imprimirResumen(ObservableList<Resumen> resumens, int total){
 //     
 //this.resetCacheImpresora();
@@ -873,67 +896,73 @@ public Jugada buscarPareja(Jugada jugada , ArrayList<Jugada>jugadas){
 //                 
 //                return filtroJugadas;
 //                 } 
-
-public boolean esNumero(String val){
-        try{
+    public boolean esNumero(String val) {
+        try {
             Integer.parseInt(val);
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
- }
-
-private boolean sePuedenSolapar(Jugada j, Jugada k, ArrayList<Jugada>jugadas){
-    Jugada j2=this.buscarPareja(j,jugadas);
-    Jugada k2 =this.buscarPareja(k, jugadas);
-    Jugada unoj; Jugada dosj;
-    Jugada unok; Jugada dosk;
-    boolean uno=false;
-    boolean dos=false;
-    if(j.getPosicion()<j2.getPosicion()){
-        unoj=j;
-        dosj=j2;
-    }else{
-        unoj=j2;
-        dosj=j;
     }
-     if(k.getPosicion()<k2.getPosicion()){
-        unok=k;
-        dosk=k2;
-    }else{
-        unok=k2;
-        dosk=k;
-    }
-     
-     if((unoj.getNumero().equals(unok.getNumero())) && unoj.getPosicion()== unok.getPosicion())uno=true;
-     if((dosj.getNumero().equals(dosk.getNumero())) && dosj.getPosicion()== dosk.getPosicion())dos=true;
-     if(uno && dos)return true;
-     else return false;
-}
 
-private boolean sePuedenSolaparB( ArrayList<Jugada>borra2, ArrayList<Jugada> borra1){
-   
-if(borra2.size()==borra1.size()){
-  
-    boolean uno=true; 
-    for(int i=0;i<borra1.size();i++){
-       
-        for(int j = 0; j<borra2.size(); j++){
-            if(borra1.get(i).getPosicion()==borra2.get(j).getPosicion()){
-                uno = uno && (borra1.get(i).getNumero().equals(borra2.get(j).getNumero())); 
-            }
+    private boolean sePuedenSolapar(Jugada j, Jugada k, ArrayList<Jugada> jugadas) {
+        Jugada j2 = this.buscarPareja(j, jugadas);
+        Jugada k2 = this.buscarPareja(k, jugadas);
+        Jugada unoj;
+        Jugada dosj;
+        Jugada unok;
+        Jugada dosk;
+        boolean uno = false;
+        boolean dos = false;
+        if (j.getPosicion() < j2.getPosicion()) {
+            unoj = j;
+            dosj = j2;
+        } else {
+            unoj = j2;
+            dosj = j;
         }
-        
-    } 
-   
-   return uno;
-   
+        if (k.getPosicion() < k2.getPosicion()) {
+            unok = k;
+            dosk = k2;
+        } else {
+            unok = k2;
+            dosk = k;
+        }
+
+        if ((unoj.getNumero().equals(unok.getNumero())) && unoj.getPosicion() == unok.getPosicion() && unoj.getMonto()== unok.getMonto()) {
+            uno = true;
+        }
+        if ((dosj.getNumero().equals(dosk.getNumero())) && dosj.getPosicion() == dosk.getPosicion() && dosj.getMonto()== dosk.getMonto()) {
+            dos = true;
+        }
+        if (uno && dos) {
+            return true;
+        } else {
+            return false;
+        }
     }
-     
-  else return false;
-}
 
+    private boolean sePuedenSolaparB(ArrayList<Jugada> borra2, ArrayList<Jugada> borra1) {
 
+        if (borra2.size() == borra1.size()) {
+
+            boolean uno = true;
+            for (int i = 0; i < borra1.size(); i++) {
+
+                for (int j = 0; j < borra2.size(); j++) {
+                    if (borra1.get(i).getPosicion() == borra2.get(j).getPosicion()) {
+                        uno = uno && (borra1.get(i).getNumero().equals(borra2.get(j).getNumero()));
+                    }
+                }
+
+            }
+
+            return uno;
+
+        } else {
+            return false;
+        }
+    }
 
 //public void resetCacheImpresora() {
 //
@@ -944,6 +973,4 @@ if(borra2.size()==borra1.size()){
 //Ticket.resetTotals();
 //
 //    } 
-
 }
-  

@@ -28,6 +28,9 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
+////////////////////////////////////////////////////////////////
+import static utils.Config.*;
+
 
 /**
  *
@@ -46,57 +49,30 @@ public class JugadaController {
   
  private static double matrizRedoblon[][]={ {1280, 640, 336}, {256, 128, 64}, {64, 32, 16},{1, 1, 1}};
 
-// public ObservableList<Resumen> mostrarJugadas(ObservableList<Resumen> obsResumen) {
-//     System.out.println("el resumen tiene unlargo de :"+obsResumen.size());
-//        ObservableList<Resumen> jugadas;
-//        jugadas = FXCollections.observableArrayList();
-//        ArrayList<Integer>idb = new ArrayList();
-//        for(Resumen r : obsResumen){
-//               
-//            
-//        return jugadas;
-//        }
-// 
-//        return jugadas;
-//    }
- 
+
 
    private Conexion mysql=new Conexion();
    private Connection cn = mysql.conectar();
    private String sSQL="";
    public Integer totalregistros;
    
+   
    public ArrayList<Jugada> generarJugada(ArrayList<Integer> posiciones, ArrayList<String> quinielas, ArrayList<String> turnos, String nombre,int tipo, String numero, int cifras, int monto) {
     
        ArrayList<Jugada> jugadas = new ArrayList();
-        turnos.stream().forEach((n)->System.out.println(""+n));
+//conso
         for (String turno : turnos) {
             for (String quiniela: quinielas) {
                  for (Integer posicion : posiciones) {
-                   if(!(((turno.equals("11"))||(turno.equals("17"))) && (quiniela.equals("O")))){
+                   if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals("O")))){
                     Jugada j = new Jugada(tipo, numero, cifras, posicion, monto, quiniela, turno, false);
                     jugadas.add(j);                           
                      }
                 }    
             }
         }
-     //  jugadas.stream().forEach((n)->System.out.println(n.getNumero()+"  y turno "+n.getTurno()));
        return jugadas;
-    }
-// private ArrayList<Jugada> invertirLista(ArrayList<Jugada> lista){
-//     
-//       //Collections.sort(lista, (Jugada p1, Jugada p2) -> new Integer(p1.getNumero()).compareTo(new Integer(p2.getNumero())));
-//      if(lista.size()>1){
-//        for (int i=0; i<lista.size()/2; i++) {
-//           Jugada aux = lista.get(i);
-//           Jugada aux2=lista.get(lista.size()-1-i);
-//            lista.set(i, aux2);
-//            lista.set(lista.size()-1-i,aux);
-//        }return lista;
-//      }
-//       return lista;
-//     
-// }  
+    } 
    
 public ResumenJugada generarResumenJugadas(ArrayList<Integer> posiciones, ArrayList<String> quinielas, ArrayList<String> turnos, String nombre,int tipo, String numero, int cifras, int monto) {
         
@@ -548,10 +524,12 @@ public boolean actualizarJugada(Jugada jugada) {
     public boolean jugadaGano(Jugada j) {
         if (j.isGano() && j.getTipo()==1) {
             return true;
-        } else if (j.isGano() && j.getTipo()==2) {
+        } else if (j.isGano() && j.getTipo()==2) {     
             Jugada jugadaPareja = this.buscarPareja(j);
             if (jugadaPareja.isGano()) {
                 return true;
+            }else{
+                return false;
             }
         }
         return false;
@@ -562,7 +540,7 @@ public Jugada buscarPareja(Jugada jugada) {
         try {
               
             Statement orden = cn.createStatement();
-           sSQL = "SELECT * from jugada where jugada.idboleta=" + jugada.getIdBoleta() + " and jugada.idRedoblona=" + jugada.getIdRedoblona();
+           sSQL = "SELECT * from jugada where jugada.idboleta=" + jugada.getIdBoleta() + " and jugada.idRedoblona=" + jugada.getIdRedoblona() + " and jugada.idJugada !=" +jugada.getIdJugada() ;
             ResultSet r = orden.executeQuery(sSQL);
             while (r.next()) {
                 int idJugada = r.getInt("idJugada");
@@ -581,12 +559,9 @@ public Jugada buscarPareja(Jugada jugada) {
               
                 Jugada j = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, gano, idBoleta, idRedoblona);
                
-                if (!j.getNumero().equals(jugada.getNumero())) {
-                     orden.close();
-                     r.close();
+                    orden.close();
+                    r.close();
                     return j;
-                }
-
                }
               orden.close();
                      r.close();
@@ -650,15 +625,17 @@ public Jugada buscarPareja(Jugada jugada) {
 public int calcularPremio(Jugada j) {
             if(j.isGano() && j.getTipo()==1){
               int total = this.premio(j);
-              return total;}
-            else 
+              return total;
+            }else {
+                System.out.println("entro a calcular premio redoblona ***************");
                  if(j.isGano() && j.getTipo()==2){
-                    Jugada pareja=this.buscarPareja(j);
-                    
-                  int total=this.premio(j,pareja);  
+                     System.out.println("j is gano y es de tipo 2***************");
+                    Jugada pareja=this.buscarPareja(j);                 
+                    int total = this.premio(j,pareja);  
                     return total;
                       }
             return 0;
+         }
     }
     
 public int premio(Jugada j){
@@ -679,6 +656,7 @@ public int premio(Jugada j){
 // }
 //   
 private int premio(Jugada j, Jugada g){
+    System.out.println("entro por fina calular el premio******");
     Jugada uno;Jugada dos;
              if(this.sonPareja(j, g)){
                 if(j.isGano() && g.isGano()){

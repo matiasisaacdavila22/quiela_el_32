@@ -14,6 +14,9 @@ import javafx.collections.ObservableList;
 import model.Jugada;
 import model.Resumen;
 import model.ResumenAgrupado;
+import utils.Config;
+///////////////////////////////////////
+import static utils.Config.*;
 
 /**
  *
@@ -70,27 +73,27 @@ public class ResumenAgrupadoController {
             String idsJugadas = r.getIdJugadas();
             int tipo = r.getTipo();
 
-            if (list.contains("11")) {
+            if (list.contains(Config.primera)) {
 
-                String turno = "11";
+                String turno = Config.primera;
                 Resumen r2 = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posiciones, nombre, idsJugadas, tipo);
                 primera.add(r2);
             }
-            if (list.contains("14")) {
+            if (list.contains(Config.segunda)) {
 
-                String turno = "14";
+                String turno = Config.segunda;
                 Resumen r2 = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posiciones, nombre, idsJugadas, tipo);
                 segunda.add(r2);
             }
-            if (list.contains("17")) {
+            if (list.contains(Config.tercera)) {
 
-                String turno = "17";
+                String turno = Config.tercera;
                 Resumen r2 = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posiciones, nombre, idsJugadas, tipo);
                 tercera.add(r2);
             }
-            if (list.contains("21")) {
+            if (list.contains(Config.cuarta)) {
 
-                String turno = "21";
+                String turno = Config.cuarta;
                 Resumen r2 = new Resumen(id, numero, turno, quiniela, monto, fecha, gano, posiciones, nombre, idsJugadas, tipo);
                 cuarta.add(r2);
             }

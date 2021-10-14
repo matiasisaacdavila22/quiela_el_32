@@ -51,6 +51,8 @@ import model.Pago;
 import javafx.scene.Node;
 import javafx.stage.StageStyle;
 import utils.herramietasTest;
+    //////////////////////////////////////////////////////// 08/08/2021
+    import static utils.Config.*;
 
 /**
  * FXML Controller class
@@ -536,6 +538,7 @@ public boolean esNumero(String val){
         if(boleta.isEstado()){
             if(!boleta.isPagado()){
                 int totalpago = pagoController.calcularPago(boleta);
+                System.out.println("el total a pagar de la boleta es :"+totalpago);
                 this.habilitarPago();
                 this.txtTotal.setText(""+totalpago);
                 this.pago = new Pago(boleta.getId(),this.fechaActual(),totalpago);
@@ -621,26 +624,26 @@ public boolean esNumero(String val){
        try{
          DateFormat dateFormat = new SimpleDateFormat("HH:mm");
                   java.util.Date horaMatutina = dateFormat.parse("12:00");
-                  java.util.Date horaVespertina =dateFormat.parse("14:30");
+                  java.util.Date horaVespertina =dateFormat.parse("15:00");
                   java.util.Date horaTarde =dateFormat.parse("17:30");
                   java.util.Date horaNocturna= dateFormat.parse("21:00");
                   java.util.Date hora= dateFormat.parse(horaActual);
                   
          for(Jugada jugada : jugadas){
    
-            if(jugada.turno.equals("11")){
+            if(jugada.turno.equals(primera)){
                 if(hora.after(horaMatutina)){
                     return false;
                 }
-            }else if(jugada.turno.equals("14")){
+            }else if(jugada.turno.equals(segunda)){
                 if(hora.after(horaVespertina)){
                     return false;
                 }
-            }else if(jugada.turno.equals("17")){
+            }else if(jugada.turno.equals(tercera)){
                 if(hora.after(horaTarde)){
                     return false;
                 }
-            }else if(jugada.turno.equals("21")){
+            }else if(jugada.turno.equals(cuarta)){
                 if(hora.after(horaNocturna)){
                     return false;
                 }
