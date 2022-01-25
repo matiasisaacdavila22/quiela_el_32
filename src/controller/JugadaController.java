@@ -47,7 +47,7 @@ public class JugadaController {
                                    {0.43, 4.37, 40, 218.75},{0.41, 4.12, 35.29, 205.88},{0.38, 3.88, 33.33, 194.44},//16-18
                                    {0.37, 3.68, 31.58, 184.21},{0.35, 3.5, 30, 175}};
   
- private static double matrizRedoblon[][]={ {1280, 640, 336}, {256, 128, 64}, {64, 32, 16},{1, 1, 1}};
+ private static double matrizRedoblon[][]={ {1280, 640, 336}, {256, 128, 64}, {64, 32, 16},{36, 32, 16}};
 
 
 
@@ -642,8 +642,8 @@ public int premio(Jugada j){
    int fila=j.getPosicion()-1;
    int columna=j.getCifras()-1;
    int monto=j.getMonto();
-   int multiplicador=(int) this.matriz[fila][columna];
-   int premio=monto*multiplicador; 
+   double multiplicador=(double) this.matriz[fila][columna];
+   int premio=(int) (monto*multiplicador); 
    return premio;
     }
 // private Jugada jugadaUno(ArrayList<Jugada>pareja){
@@ -671,9 +671,9 @@ private int premio(Jugada j, Jugada g){
                       else columna=2;
                    int fila;
                      if(uno.getPosicion()==1)fila=0; 
-                     else if(uno.getPosicion()==5)fila=1;
-                     else if(uno.getPosicion()==10)fila=2;
-                     else fila=3;
+                     else if(uno.getPosicion()==5)fila=0;
+                     else if(uno.getPosicion()==10)fila=1;
+                     else fila=2;
                      int monto=uno.getMonto();
   
                      int multiplicador=(int) this.matrizRedoblon[fila][columna];

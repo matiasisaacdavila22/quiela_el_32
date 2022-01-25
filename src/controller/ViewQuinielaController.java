@@ -177,7 +177,8 @@ public class ViewQuinielaController implements Initializable {
         this.textHora.setText(jugadaController.hora());
         this.setHoras();           
        
-
+             
+        
             txtNombre.setOnKeyPressed(e->{
             switch(e.getCode()){
                
@@ -269,7 +270,7 @@ public class ViewQuinielaController implements Initializable {
                              this.txtNumero1.requestFocus();
                           }break; 
                      case F10 :if(true){quinielas.clear();
-                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");
+                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");quinielas.add("R");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -335,7 +336,13 @@ public class ViewQuinielaController implements Initializable {
                             txtQuiniela1.setText(s);
                            }else { quinielas.add("O");
                             String s = this.setReset(quinielas);
-                            txtQuiniela1.setText(s);}break;                       
+                            txtQuiniela1.setText(s);}break; 
+                   case R :  if(quinielas.contains("R")){quinielas.remove("R");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);
+                           }else { quinielas.add("R");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);}break;         
             }
                });
            
@@ -476,7 +483,7 @@ public class ViewQuinielaController implements Initializable {
                              this.txtNumero1.requestFocus();
                           }break; 
                      case F10 :if(true){quinielas.clear();
-                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");
+                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");quinielas.add("R");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -1180,7 +1187,7 @@ private boolean validarQuiniela(String q) {
   }
 
 public boolean validarFormatoQuiniela(String turno) {
-    return turno.matches("^([n|p|f|e|c|o|N|P|F|E|C|O]{1}[-]?){1,6}$");
+    return turno.matches("^([n|p|f|e|c|o|r|N|P|F|E|C|O|R]{1}[-]?){1,7}$");
 }
 public  String[] limpiarFormato(String quinielas) {
     
@@ -1201,6 +1208,7 @@ public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
          if("E".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("C".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("O".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
+         if("R".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
    
      }
  }else if("**".equals(s)){
@@ -1211,6 +1219,7 @@ public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
          quinielas.add("E");
          quinielas.add("C");
          quinielas.add("O");
+         quinielas.add("R");
          return;
        }      
      }
@@ -1477,7 +1486,7 @@ private void generarJugadasDobles(String nombre, String [] numeros, int monto, S
      for(String turno : turnos){     
         if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals("O")))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quiniela, turno,false); 
-                Jugada jugada2=new  Jugada(tipo, numero2, cifras, posicion2, monto, quiniela, turno, false); 
+                Jugada jugada2=new  Jugada(tipo, numero2, cifras, Nposiciones.get(1), monto, quiniela, turno, false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
                 this.jugadas.add(redoblona.getUno());
                 this.jugadas.add(redoblona.getDos());
@@ -1670,12 +1679,12 @@ if(!primera.isEmpty()){
   String quinielas1 = sbq.toString();
   String quinielasT = "TODAS";
   String quinielas;
-  quinielas=(quinielas1.length()==12)? quinielasT : quinielas1;
+  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
     StringBuilder sb = new StringBuilder("                           ");
             
   sb.replace(0,4, String.valueOf(numero));
-     sb.replace(8,9,String.valueOf(posiciones));
-     sb.replace(12,19,String.valueOf(quinielas));
+     sb.replace(6,7,String.valueOf(posiciones));
+     sb.replace(10,19,String.valueOf(quinielas));
      //if(sb.length()<22)     
        sb.setLength(27);
      sb.replace(23,27, String.valueOf(monto));
@@ -1707,12 +1716,12 @@ if(!matutina.isEmpty()){
   String quinielas1 = resultado[2];
   String quinielasT = "TODAS";
   String quinielas;
-  quinielas=(quinielas1.length()==12)? quinielasT : quinielas1;
+  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
     StringBuilder sb = new StringBuilder("                           ");
       
      sb.replace(0,4, String.valueOf(numero));
-     sb.replace(8,9,String.valueOf(posiciones));
-     sb.replace(12,19,String.valueOf(quinielas));
+     sb.replace(6,7,String.valueOf(posiciones));
+     sb.replace(10,19,String.valueOf(quinielas));
      sb.setLength(27);
      sb.replace(23,27, String.valueOf(monto));
   ticket.AddSubCabecera(sb.toString());    
@@ -1752,12 +1761,12 @@ if(!tarde.isEmpty()){
   String quinielas1 = sbq.toString();
   String quinielasT = "TODAS";
   String quinielas;
-  quinielas=(quinielas1.length()==12)? quinielasT : quinielas1;
+  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
     StringBuilder sb = new StringBuilder("                           ");
       
      sb.replace(0,4, String.valueOf(numero));
-     sb.replace(8,9,String.valueOf(posiciones));
-     sb.replace(12,19,String.valueOf(quinielas));
+     sb.replace(6,7,String.valueOf(posiciones));
+     sb.replace(10,19,String.valueOf(quinielas));
      sb.setLength(27);
      sb.replace(23,27, String.valueOf(monto));
   ticket.AddSubCabecera(sb.toString());    
@@ -1788,12 +1797,12 @@ if(!nocturna.isEmpty()){
   String quinielas1 = resultado[2];
   String quinielasT = "TODAS";
   String quinielas;
-  quinielas=(quinielas1.length()==12)? quinielasT : quinielas1;
+  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
     StringBuilder sb = new StringBuilder("                           ");
       
      sb.replace(0,4, String.valueOf(numero));
-     sb.replace(8,9,String.valueOf(posiciones));
-     sb.replace(12,19,String.valueOf(quinielas));
+     sb.replace(6,7,String.valueOf(posiciones));
+     sb.replace(10,19,String.valueOf(quinielas));
      sb.setLength(27);
      sb.replace(23,27, String.valueOf(monto));
   ticket.AddSubCabecera(sb.toString());    

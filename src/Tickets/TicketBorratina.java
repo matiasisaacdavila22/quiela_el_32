@@ -223,7 +223,7 @@ if(!matutina.isEmpty()){
  ticket.AddSubCabecera(ticket.DarEspacio());
  ticket.AddSubCabecera("QUINIELA: "+quinielas);
 ticket.AddSubCabecera(ticket.DarEspacio());
-ticket.AddSubCabecera("NUMEROS:");
+ticket.AddSubCabecera("NROS:");
 ticket.AddSubCabecera(ticket.DarEspacio());
 ticket.AddSubCabecera(""+borratina); 
 }else {

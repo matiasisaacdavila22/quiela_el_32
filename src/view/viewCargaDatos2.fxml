@@ -79,7 +79,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblNacional" alignment="CENTER_LEFT" layoutX="266.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+      <HBox fx:id="lblNacional" alignment="CENTER_LEFT" layoutX="240.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="NACIONAL" textFill="#757474">
                <font>
@@ -91,7 +91,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox fx:id="lblProvincia" alignment="CENTER_LEFT" layoutX="423.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+      <HBox fx:id="lblProvincia" alignment="CENTER_LEFT" layoutX="389.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="PROVINCIA" textFill="#757474">
                <font>
@@ -106,7 +106,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblSantafe" alignment="CENTER_LEFT" layoutX="573.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+      <HBox fx:id="lblSantafe" alignment="CENTER_LEFT" layoutX="531.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="SANTAFE" textFill="#757474">
                <font>
@@ -121,7 +121,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblEntrerios" alignment="CENTER_LEFT" layoutX="736.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="122.0" styleClass="btns">
+      <HBox fx:id="lblEntrerios" alignment="CENTER_LEFT" layoutX="670.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="122.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="ENTRERIOS" textFill="#757474">
                <font>
@@ -136,7 +136,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblCordoba" alignment="CENTER_LEFT" layoutX="904.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+      <HBox fx:id="lblCordoba" alignment="CENTER_LEFT" layoutX="817.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="CORDOBA" textFill="#757474">
                <font>
@@ -151,7 +151,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblOros" alignment="CENTER_LEFT" layoutX="1065.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
+      <HBox fx:id="lblOros" alignment="CENTER_LEFT" layoutX="953.0" layoutY="101.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="112.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="OROS" textFill="#757474">
                <font>
@@ -167,40 +167,40 @@
          </padding>
       </HBox>
       <DatePicker fx:id="dp" layoutX="13.0" layoutY="20.0" />
-      <TableView fx:id="tblNacional" layoutX="226.0" layoutY="141.0" onMouseClicked="#seleccionarN" prefHeight="545.0" prefWidth="155.0">
+      <TableView fx:id="tblNacional" layoutX="226.0" layoutY="141.0" onMouseClicked="#seleccionarN" prefHeight="545.0" prefWidth="133.0">
          <columns>
-            <TableColumn fx:id="colNumeroN" prefWidth="37.0" text="N°" />
-            <TableColumn fx:id="colNacional" prefWidth="110.0" text="NACIONAL" />
+            <TableColumn fx:id="colNumeroN" prefWidth="29.0" text="N°" />
+            <TableColumn fx:id="colNacional" prefWidth="118.0" text="NACIONAL" />
          </columns>
       </TableView>
-      <TableView fx:id="tblProvincia" layoutX="407.0" layoutY="141.0" onMouseClicked="#seleccionarP" prefHeight="545.0" prefWidth="143.0">
+      <TableView fx:id="tblProvincia" layoutX="378.0" layoutY="141.0" onMouseClicked="#seleccionarP" prefHeight="545.0" prefWidth="133.0">
          <columns>
-            <TableColumn fx:id="colNumeroP" prefWidth="41.0" text="N°" />
-            <TableColumn fx:id="colProvincia" prefWidth="96.0" text="PROVINCIA" />
+            <TableColumn fx:id="colNumeroP" prefWidth="31.0" text="N°" />
+            <TableColumn fx:id="colProvincia" prefWidth="106.0" text="PROVINCIA" />
          </columns>
       </TableView>
-      <TableView fx:id="tblSantafe" layoutX="565.0" layoutY="141.0" onMouseClicked="#seleccionarS" prefHeight="545.0" prefWidth="143.0">
+      <TableView fx:id="tblSantafe" layoutX="527.0" layoutY="141.0" onMouseClicked="#seleccionarS" prefHeight="545.0" prefWidth="122.0">
          <columns>
-            <TableColumn fx:id="colNumeroS" prefWidth="36.0" text="N°" />
-            <TableColumn fx:id="colSantafe" prefWidth="101.0" text="SANTAFE" />
+            <TableColumn fx:id="colNumeroS" prefWidth="29.0" text="N°" />
+            <TableColumn fx:id="colSantafe" prefWidth="108.0" text="SANTAFE" />
          </columns>
       </TableView>
-      <TableView fx:id="tblEntrerios" layoutX="722.0" layoutY="141.0" onMouseClicked="#seleccionarE" prefHeight="545.0" prefWidth="149.0">
+      <TableView fx:id="tblEntrerios" layoutX="666.0" layoutY="141.0" onMouseClicked="#seleccionarE" prefHeight="545.0" prefWidth="133.0">
          <columns>
-            <TableColumn fx:id="colNumeroE" prefWidth="39.0" text="N°" />
-            <TableColumn fx:id="colEntrerios" prefWidth="104.0" text="ENTRERIOS" />
+            <TableColumn fx:id="colNumeroE" prefWidth="28.0" text="N°" />
+            <TableColumn fx:id="colEntrerios" prefWidth="115.0" text="ENTRERIOS" />
          </columns>
       </TableView>
-      <TableView fx:id="tblCordoba" layoutX="885.0" layoutY="141.0" onMouseClicked="#seleccionarC" prefHeight="545.0" prefWidth="149.0">
+      <TableView fx:id="tblCordoba" layoutX="809.0" layoutY="141.0" onMouseClicked="#seleccionarC" prefHeight="545.0" prefWidth="133.0">
          <columns>
-            <TableColumn fx:id="colNumeroC" prefWidth="38.0" text="N°" />
-            <TableColumn fx:id="colCordoba" prefWidth="105.0" text="CORDOBA" />
+            <TableColumn fx:id="colNumeroC" prefWidth="28.0" text="N°" />
+            <TableColumn fx:id="colCordoba" prefWidth="115.0" text="CORDOBA" />
          </columns>
       </TableView>
-      <TableView fx:id="tblOros" layoutX="1048.0" layoutY="142.0" onMouseClicked="#seleccionarO" prefHeight="545.0" prefWidth="149.0">
+      <TableView fx:id="tblOros" layoutX="953.0" layoutY="142.0" onMouseClicked="#seleccionarO" prefHeight="545.0" prefWidth="112.0">
          <columns>
-            <TableColumn fx:id="colNumeroO" prefWidth="38.0" text="N°" />
-            <TableColumn fx:id="colOros" prefWidth="105.0" text="OROS" />
+            <TableColumn fx:id="colNumeroO" prefWidth="28.0" text="N°" />
+            <TableColumn fx:id="colOros" prefWidth="83.0" text="OROS" />
          </columns>
       </TableView>
       <Label layoutX="428.0" layoutY="25.0" prefHeight="36.0" prefWidth="112.0" text="FECHA :">
@@ -214,5 +214,26 @@
          </font>
       </Label>
       <Button fx:id="btnImprimirStracto" layoutX="8.0" layoutY="543.0" mnemonicParsing="false" onMouseClicked="#imprimirStracto" prefHeight="31.0" prefWidth="187.0" text="Imprimir " />
+      <TableView fx:id="tblCorrientes" layoutX="1074.0" layoutY="142.0" onMouseClicked="#seleccionarR" prefHeight="545.0" prefWidth="133.0">
+         <columns>
+            <TableColumn fx:id="colNumeroR" prefWidth="28.0" text="N°" />
+            <TableColumn fx:id="colCorrientes" prefWidth="115.0" text="CORRIENTES" />
+         </columns>
+      </TableView>
+      <HBox fx:id="lblCorrientes" alignment="CENTER_LEFT" layoutX="1079.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="122.0" styleClass="btns">
+         <children>
+            <Label prefHeight="20.0" prefWidth="135.0" stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="CORRIENTES" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
    </children>
 </AnchorPane>

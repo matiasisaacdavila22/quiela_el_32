@@ -190,7 +190,7 @@ public class ViewPanelController implements Initializable {
        this.colJMonto.setCellValueFactory(new PropertyValueFactory("monto"));
        this.colJEstado.setCellValueFactory(new PropertyValueFactory("gano"));
                       
-       
+       this.boletaController.eliminarBoletas();
               panelPrincipal.setOnKeyReleased((javafx.scene.input.KeyEvent e) -> {
                  switch(e.getCode()){
                     

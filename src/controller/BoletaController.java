@@ -408,6 +408,30 @@ public ObservableList<Boleta> consultarxState(boolean state, Date fecha) {
             return false;
         }
     }
+ 
+  public boolean eliminarBoletas(){
+      System.out.println("entro a eliminar boletas");
+     java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+      System.out.println("la fecha es :" + fechaSql);
+   sSQL = "DELETE FROM boleta where CAST(boleta.fecha AS DATE)<='"+fechaSql+"'";
+        try {
+         
+            PreparedStatement pst = cn.prepareStatement(sSQL);
+   
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println("error : " + e);
+            return false;
+        }
+    }
 
     public int tiempoBoleta(Boleta j) {
         Date fechaInicial = j.getFecha();
