@@ -57,6 +57,26 @@ public class JugadaController {
    public Integer totalregistros;
    
    
+  public boolean eliminarJugadas(){
+      java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+     sSQL = "DELETE FROM jugada where CAST(jugada.fecha AS DATE)<='"+fechaSql+"'";
+        try(PreparedStatement pst = cn.prepareStatement(sSQL)){
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            
+            System.out.println("error : " + e);
+            return false;
+        }
+    }
+   
    public ArrayList<Jugada> generarJugada(ArrayList<Integer> posiciones, ArrayList<String> quinielas, ArrayList<String> turnos, String nombre,int tipo, String numero, int cifras, int monto) {
     
        ArrayList<Jugada> jugadas = new ArrayList();

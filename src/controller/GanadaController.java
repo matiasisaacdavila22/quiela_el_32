@@ -37,8 +37,28 @@ public class GanadaController {
    private ArrayList<Jugada>jugadasGanadoras;
     
 
+    public boolean eliminarGanadas(){
+      java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql = new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+     sSQL = "DELETE FROM ganada where CAST(ganada.fecha AS DATE)<='"+fechaSql+"'";
+        try(PreparedStatement pst = cn.prepareStatement(sSQL)){
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            
+            System.out.println("error : " + e.getMessage());
+            return false;
+        }
+    } 
+   
 public void insertar(Ganada ganada) {
-        System.out.println("entro en insertar numero ganado en base de datos agregamos la fecha");
+
          sSQL = "insert into ganada (numero, posicion, quiniela, turno, fecha)"
                 + "values (?,?,?,?,?)";                   
         try {

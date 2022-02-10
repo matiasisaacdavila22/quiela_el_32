@@ -27,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import static org.apache.poi.hwpf.model.FileInformationBlock.logger;
 
 
 /**
@@ -240,7 +241,7 @@ public String fecha(){
             return null;
 
         } catch (SQLException ex) {
-            System.out.println("error :" + ex);
+              System.out.println("error :" + ex);
             return null;
         }    
  }
@@ -410,15 +411,11 @@ public ObservableList<Boleta> consultarxState(boolean state, Date fecha) {
     }
  
   public boolean eliminarBoletas(){
-      System.out.println("entro a eliminar boletas");
-     java.util.Date fecha = new java.util.Date();
+      java.util.Date fecha = new java.util.Date();
      java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
-      System.out.println("la fecha es :" + fechaSql);
-   sSQL = "DELETE FROM boleta where CAST(boleta.fecha AS DATE)<='"+fechaSql+"'";
+     sSQL = "DELETE FROM boleta where CAST(boleta.fecha AS DATE)<='"+fechaSql+"'";
         try {
-         
-            PreparedStatement pst = cn.prepareStatement(sSQL);
-   
+           PreparedStatement pst = cn.prepareStatement(sSQL);
             int n = pst.executeUpdate();
             if (n != 0) {
                 pst.close();

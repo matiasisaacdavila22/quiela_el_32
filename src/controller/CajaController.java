@@ -29,7 +29,26 @@ public class CajaController {
   private Connection cn = mysql.conectar();
   private String sSQL="";
   public Integer totalregistros; 
-  
+
+ public boolean eliminarCajas(){
+      java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+     sSQL = "DELETE FROM caja where CAST(caja.fecha AS DATE)<='"+fechaSql+"'";
+        try(PreparedStatement pst = cn.prepareStatement(sSQL)){
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            
+            System.out.println("error : " + e);
+            return false;
+        }
+    }  
     
  public boolean checarCaja(Date fecha) {
         try {

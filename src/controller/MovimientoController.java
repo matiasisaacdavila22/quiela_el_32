@@ -33,6 +33,26 @@ public class MovimientoController {
   public Integer totalregistros; 
   
   
+ public boolean eliminarMovimientos(){
+      java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+     sSQL = "DELETE FROM movimiento where CAST(movimiento.fecha AS DATE)<='"+fechaSql+"'";
+        try(PreparedStatement pst = cn.prepareStatement(sSQL)){
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            
+            System.out.println("error : " + e);
+            return false;
+        }
+    }
+  
  public Date fechaActual(){
      java.util.Date fecha = new java.util.Date();
      Date fechaSql=new Date(fecha.getTime());

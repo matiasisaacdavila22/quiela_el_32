@@ -115,7 +115,10 @@ public class ViewPanelController implements Initializable {
     private ObservableList<Boleta>boletas;
     private ObservableList<Jugada>jugadas;
     private BoletaController boletaController;
+    private CajaController cajaController;
+    private GanadaController ganadaController;
     private PagoController pagoController;
+    private MovimientoController movimientoController;
     private ResumenController resumenController;
     private JugadaController jugadaController;
     private Pago pago;
@@ -140,8 +143,6 @@ public class ViewPanelController implements Initializable {
     private Text txtHora2;
     @FXML
     private Button btnLogout;
-  
-    private CajaController cajaController;
     
     @FXML
     private Button btnAnular;
@@ -165,6 +166,7 @@ public class ViewPanelController implements Initializable {
        this.pagoController = new PagoController();
        this.resumenController = new ResumenController();
        this.cajaController = new CajaController();
+       this.ganadaController = new GanadaController();
        this.lblFecha.setText(jugadaController.fecha());
        this.txtHora2.setDisable(true);
        this.hboxs = new HBox[]{hbQuiniela,hbBorratina,hbCaja,hbCargaDatos,hbReporte};
@@ -191,6 +193,9 @@ public class ViewPanelController implements Initializable {
        this.colJEstado.setCellValueFactory(new PropertyValueFactory("gano"));
                       
        this.boletaController.eliminarBoletas();
+       this.cajaController.eliminarCajas();
+       this.ganadaController.eliminarGanadas();
+       
               panelPrincipal.setOnKeyReleased((javafx.scene.input.KeyEvent e) -> {
                  switch(e.getCode()){
                     
@@ -536,9 +541,9 @@ public boolean esNumero(String val){
         this.tblJugada.setItems(jugadas);
         paintTableJugada();
         if(boleta.isEstado()){
+            this.btnAnular.setVisible(false);
             if(!boleta.isPagado()){
                 int totalpago = pagoController.calcularPago(boleta);
-                System.out.println("el total a pagar de la boleta es :"+totalpago);
                 this.habilitarPago();
                 this.txtTotal.setText(""+totalpago);
                 this.pago = new Pago(boleta.getId(),this.fechaActual(),totalpago);
@@ -547,17 +552,11 @@ public boolean esNumero(String val){
                }
         }else if(!boleta.isEstado()){
              this.deshabilitarPago();
-             if(this.isDelDia(boleta)){
-                 if(this.isCancelable(boleta)){
-                     this.btnAnular.setVisible(true);
-                 }else{
-                     this.btnAnular.setVisible(false);
-                 }
-             }else{
-                     this.btnAnular.setVisible(false);
-             }
-        }
-        
+             this.btnAnular.setVisible(false);
+             if(this.isDelDia(boleta) && this.isCancelable(boleta)){
+                   this.btnAnular.setVisible(true);
+               }
+           }     
     }
 
     @FXML

@@ -34,6 +34,26 @@ public class PagoController {
    private JugadaController jugadaController;
    private ArrayList<Jugada>jugadasGanadoras;
   
+   
+ public boolean eliminarPagos(){
+      java.util.Date fecha = new java.util.Date();
+     java.sql.Date fechaSql=new java.sql.Date(fecha.getTime()-15 * 24 * 60 * 60 * 1000);
+     sSQL = "DELETE FROM pago where CAST(pago.fecha AS DATE)<='"+fechaSql+"'";
+        try(PreparedStatement pst = cn.prepareStatement(sSQL)){
+            int n = pst.executeUpdate();
+            if (n != 0) {
+                pst.close();
+                return true;
+            } else {
+                pst.close();
+                return false;
+            }
+        } catch (Exception e) {
+            
+            System.out.println("error : " + e);
+            return false;
+        }
+    }
 
  public void insertar(Pago pago) {
         System.out.println("entro en insertar  PAGO en base de datos");
