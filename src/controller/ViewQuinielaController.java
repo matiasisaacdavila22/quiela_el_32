@@ -192,7 +192,16 @@ public class ViewQuinielaController implements Initializable {
                 case UP: this.txtNombre.requestFocus(); ;break;
                 case DOWN: this.txtQuiniela1.requestFocus(); ;break;
                 case ENTER:if(this.validarTurno(txtTurno1.getText()))this.txtQuiniela1.requestFocus();break;
-                     case F1 :  if(turnos.contains(primera)){turnos.remove(primera);
+                 case F1 :  if(turnos.contains(maniana)){turnos.remove(maniana);
+                            String s = this.setReset(turnos);
+                            txtTurno1.setText(s);
+                             this.txtNumero1.requestFocus();
+                           }else { turnos.add(maniana);
+                            String s = this.setReset(turnos);
+                            txtTurno1.setText(s);
+                            this.txtNumero1.requestFocus();}break;
+                            
+                     case F2 :  if(turnos.contains(primera)){turnos.remove(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -201,7 +210,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                  this.txtNumero1.requestFocus();}break;
   
-                 case F2 :  if(turnos.contains(segunda)){turnos.remove(segunda);
+                 case F3 :  if(turnos.contains(segunda)){turnos.remove(segunda);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -210,7 +219,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F3 :  if(turnos.contains(tercera)){turnos.remove(tercera);
+                 case F4 :  if(turnos.contains(tercera)){turnos.remove(tercera);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -219,7 +228,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F4 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
+                 case F5 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -235,53 +244,53 @@ public class ViewQuinielaController implements Initializable {
                 case UP: this.txtTurno1.requestFocus(); break;
                 case DOWN: this.txtNumero1.requestFocus(); ;break;
                 case ENTER:if(this.validarQuiniela(txtQuiniela1.getText()))this.txtNumero1.requestFocus();break;
-                 case F5 :  if(true){quinielas.clear();
+                 case F6 :  if(true){quinielas.clear();
                             quinielas.add("N");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;
                   
-                 case F6 :   if(true){quinielas.clear();
+                 case F7 :   if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;
                   
-                  case F7 :  if(true){quinielas.clear();
+                  case F8 :  if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;  
                    
-                  case F8 :if(true){quinielas.clear();
+                  case F9 :if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
                    
-                   case F9 :if(true){quinielas.clear();
+                   case F10 :if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
-                     case F10 :if(true){quinielas.clear();
-                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");quinielas.add("R");
-                            String s = this.setReset(quinielas);
-                            txtQuiniela1.setText(s);
-                             this.txtNumero1.requestFocus();
-                          }break; 
                      case F11 :if(true){quinielas.clear();
-                            quinielas.add("P");quinielas.add("F");
+                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O"); //quinielas.add("R"); "se deshabilito"
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
                      case F12 :if(true){quinielas.clear();
+                            quinielas.add("P");quinielas.add("F");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);
+                             this.txtNumero1.requestFocus();
+                          }break; 
+                     case F13 :if(true){quinielas.clear(); // se deshabilito por falta de combinacion en el teclado!"
                             quinielas.add("N");quinielas.add("P");quinielas.add("C");quinielas.add("E");quinielas.add("O");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
@@ -412,7 +421,17 @@ public class ViewQuinielaController implements Initializable {
                          this.cerrarVentana(); break;         
                                }  
                 case SPACE:this.cargarBoleta();break;
-                            case F1 :  if(turnos.contains(primera)){turnos.remove(primera);
+                
+                case F1 :  if(turnos.contains(maniana)){turnos.remove(maniana);
+                            String s = this.setReset(turnos);
+                            txtTurno1.setText(s);
+                             this.txtNumero1.requestFocus();
+                           }else { turnos.add(maniana);
+                            String s = this.setReset(turnos);
+                            txtTurno1.setText(s);
+                            this.txtNumero1.requestFocus();}break;
+                
+                case F2 :  if(turnos.contains(primera)){turnos.remove(primera);
                             String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -421,7 +440,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                  this.txtNumero1.requestFocus();}break;
   
-                 case F2 :  if(turnos.contains(segunda)){turnos.remove(segunda);
+                 case F3 :  if(turnos.contains(segunda)){turnos.remove(segunda);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -430,7 +449,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F3 :  if(turnos.contains(tercera)){turnos.remove(tercera);
+                 case F4 :  if(turnos.contains(tercera)){turnos.remove(tercera);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -439,7 +458,7 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F4 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
+                 case F5 :  if(turnos.contains(cuarta)){turnos.remove(cuarta);
                            String s = this.setReset(turnos);
                             txtTurno1.setText(s);
                              this.txtNumero1.requestFocus();
@@ -448,53 +467,53 @@ public class ViewQuinielaController implements Initializable {
                             txtTurno1.setText(s);
                   this.txtNumero1.requestFocus();}break;
                   
-                 case F5 :  if(true){quinielas.clear();
+                 case F6 :  if(true){quinielas.clear();
                             quinielas.add("N");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;
                   
-                 case F6 :   if(true){quinielas.clear();
+                 case F7 :   if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;
                   
-                  case F7 :  if(true){quinielas.clear();
+                  case F8 :  if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break;  
                    
-                  case F8 :if(true){quinielas.clear();
+                  case F9 :if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
                    
-                   case F9 :if(true){quinielas.clear();
+                   case F10 :if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
-                     case F10 :if(true){quinielas.clear();
-                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O");quinielas.add("R");
-                            String s = this.setReset(quinielas);
-                            txtQuiniela1.setText(s);
-                             this.txtNumero1.requestFocus();
-                          }break; 
                      case F11 :if(true){quinielas.clear();
-                            quinielas.add("P");quinielas.add("F");
+                            quinielas.add("N");quinielas.add("P");quinielas.add("F");quinielas.add("C");quinielas.add("E");quinielas.add("O"); //quinielas.add("R"); "deshabilitada"
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
                              this.txtNumero1.requestFocus();
                           }break; 
                      case F12 :if(true){quinielas.clear();
+                            quinielas.add("P");quinielas.add("F");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);
+                             this.txtNumero1.requestFocus();
+                          }break; 
+                     case F13 :if(true){quinielas.clear();
                             quinielas.add("N");quinielas.add("P");quinielas.add("C");quinielas.add("E");quinielas.add("O");
                             String s = this.setReset(quinielas);
                             txtQuiniela1.setText(s);
@@ -671,7 +690,7 @@ private void prepararRdoblona(String nombre, String numero1, String numero2, int
                               
                 for(int i=0;i<quinielas.size();i++){
                    for(int j=0;j<turnos.size();j++){     
-                if(!(((turnos.get(j).equals(primera))||(turnos.get(j).equals("17"))) && (quinielas.get(i).equals("O")))){
+                if(!(((turnos.get(j).equals(primera))||(turnos.get(j).equals(tercera))) && (quinielas.get(i).equals(oros)))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quinielas.get(i), turnos.get(j),false); 
                 Jugada jugada2=new  Jugada(tipo, numero2, cifras, posicion2, monto, quinielas.get(i), turnos.get(j), false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
@@ -743,7 +762,7 @@ public boolean esNumero(String val){
         }
 
     private void setPosicionTodas() {
-             this.txtPosicion1.setText(primera+"-"+segunda+"-"+tercera+"-"+cuarta);
+             this.txtPosicion1.setText(maniana+"-"+primera+"-"+segunda+"-"+tercera+"-"+cuarta);
     }
 
     @FXML
@@ -904,7 +923,7 @@ if("R".equals(tipo)){
 }else if("S".equals(tipo)) {  
    for(String quiniela : quinielas){
         for(String turno : turnos){//restriccion de jugada oros no juega a las 11hs ni a las 17hs
-            if(!(quiniela.equals("O") && ((turno.equals(primera) || turno.equals(tercera))))){
+            if(!(quiniela.equals("O") && ((turno.equals(primera) || turno.equals(tercera) || turno.equals(maniana))))){
                 totalResumen = totalResumen + monto*numeros.length*posiciones.length;
             }
         }
@@ -1102,38 +1121,43 @@ public ArrayList<String> validarHoraiosTurno(String[] turno) {
     ArrayList todosTurnos = this.setHoras();
     ArrayList<String> misTurnos = new ArrayList();
     
-    for(String s : turno){
-     if(s.length()==2){
+    if(turno.length > 0){
+    if(turno[0].equals("**")){
+        misTurnos.addAll(todosTurnos);
+    }else{
+     for(String s : turno){
+      if(s.length()==2){
          if(esNumero(s)){
           if( todosTurnos.contains(s) && !misTurnos.contains(s))misTurnos.add(s);
-          if( todosTurnos.contains(s) && !misTurnos.contains(s))misTurnos.add(s);
-          if( todosTurnos.contains(s) && !misTurnos.contains(s))misTurnos.add(s);
-          if( todosTurnos.contains(s) && !misTurnos.contains(s))misTurnos.add(s);
          }
-        else if("**".equals(s)){
-         if(todosTurnos.contains(primera))misTurnos.add(primera);
-         if(todosTurnos.contains(segunda))misTurnos.add(segunda);
-         if(todosTurnos.contains(tercera))misTurnos.add(tercera);
-         if(todosTurnos.contains(cuarta))misTurnos.add(cuarta);
-         return misTurnos;
-          }
-        }  
-     }
-    return misTurnos;
+      }
+    } 
+   }    
  }
- 
+      return misTurnos;
+}
+
 private ArrayList<String> setHoras() {
        ArrayList turnosHabilitados2 = new ArrayList();
        String horaActual = jugadaController.hora();
         try {
                 DateFormat dateFormat = new SimpleDateFormat(FH);
+                  Date horaManiana = dateFormat.parse(FH_MANIANA);
                   Date horaMatutina = dateFormat.parse(FH_PRIMERA);
                   Date horaVespertina =dateFormat.parse(FH_SEGUNDA);
                   Date horaTarde =dateFormat.parse(FH_TERCERA);
                   Date horaNocturna= dateFormat.parse(FH_CUARTA);
                   Date hora= dateFormat.parse(horaActual);
-                                      
-                if (hora.before(horaMatutina)){
+                   
+                if (hora.before(horaManiana)){
+                      turnosHabilitados2.add(maniana);
+                      turnosHabilitados2.add(primera);
+                      turnosHabilitados2.add(segunda);
+                      turnosHabilitados2.add(tercera);
+                      turnosHabilitados2.add(cuarta);
+                      return turnosHabilitados2;
+                }  
+                else if (hora.before(horaMatutina)){
                       turnosHabilitados2.add(primera);
                       turnosHabilitados2.add(segunda);
                       turnosHabilitados2.add(tercera);
@@ -1198,8 +1222,19 @@ public  String[] limpiarFormato(String quinielas) {
    return resultado;
 }
 public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
-  
-  for(String s : quini){
+  if(quini.length > 0){    
+    if(quini[0].equals("**")){
+         quinielas.clear();
+         quinielas.add("N");
+         quinielas.add("P");
+         quinielas.add("F");
+         quinielas.add("E");
+         quinielas.add("C");
+         quinielas.add("O");
+        // quinielas.add("R"); "esta deshabilitada"
+         return;
+    }else{
+     for(String s : quini){
       if(s.length()==1){
         if(!esNumero(s)){
          if("N".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
@@ -1208,21 +1243,12 @@ public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
          if("E".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("C".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("O".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
-         if("R".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
-   
+      // if("R".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase()); "esta deshabilitada"
+        }
+      }
      }
- }else if("**".equals(s)){
-         quinielas.clear();
-         quinielas.add("N");
-         quinielas.add("P");
-         quinielas.add("F");
-         quinielas.add("E");
-         quinielas.add("C");
-         quinielas.add("O");
-         quinielas.add("R");
-         return;
-       }      
-     }
+    }
+  };   
  }
 
 private boolean validarNumero(String numero) {
@@ -1484,7 +1510,7 @@ private void generarJugadasDobles(String nombre, String [] numeros, int monto, S
   String hora=jugadaController.hora();
   for(String quiniela : quinielas){
      for(String turno : turnos){     
-        if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals("O")))){
+        if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals(oros)))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quiniela, turno,false); 
                 Jugada jugada2=new  Jugada(tipo, numero2, cifras, Nposiciones.get(1), monto, quiniela, turno, false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
@@ -1499,13 +1525,20 @@ private boolean setHoras(Jugada j) {
          String horaActual = jugadaController.hora();
         try {
                 DateFormat dateFormat = new SimpleDateFormat(FH);
+                  java.util.Date horaManiana = dateFormat.parse(FH_MANIANA);
                   java.util.Date horaMatutina = dateFormat.parse(FH_PRIMERA);
                   java.util.Date horaVespertina =dateFormat.parse(FH_SEGUNDA);
                   java.util.Date horaTarde =dateFormat.parse(FH_TERCERA);
                   java.util.Date horaNocturna= dateFormat.parse(FH_CUARTA);
                   java.util.Date hora= dateFormat.parse(horaActual);
                 
-                if(j.getTurno().contains(primera)){   
+                if(j.getTurno().contains(maniana)){   
+                    
+                  if (hora.before(horaManiana)){
+                      return true;
+                      } else   return false;}  
+                  
+               else if(j.getTurno().contains(primera)){   
                     
                   if (hora.before(horaMatutina)){
                       return true;
@@ -1571,6 +1604,7 @@ private void eliminarJugada(MouseEvent event) {
 
 private void imprimirResumen(ObservableList<ResumenJugada>jugadasTabla, int idBoleta,int totalBoleta) {
 ArrayList<ResumenJugada> resumens = new ArrayList();
+ArrayList<ResumenJugada> maniana = new ArrayList();
 ArrayList<ResumenJugada> primera = new ArrayList();
 ArrayList<ResumenJugada> matutina = new ArrayList();
 ArrayList<ResumenJugada> tarde = new ArrayList();
@@ -1640,6 +1674,8 @@ for(ResumenJugada r : resumens){
   
   String [] turnos = this.limpiarFormato(resultado[2]);
   for(String t : turnos){this.turnos.add(t);}
+      if(this.turnos.contains(Config.maniana)){
+        maniana.add(r);}
     if(this.turnos.contains(Config.primera)){
         primera.add(r);}
     if(this.turnos.contains(Config.segunda)){
@@ -1648,6 +1684,53 @@ for(ResumenJugada r : resumens){
         tarde.add(r);} 
     if(this.turnos.contains(Config.cuarta)){
         nocturna.add(r);}   
+}
+if(!maniana.isEmpty()){
+  ticket.AddSubCabecera(ticket.DarEspacio());
+  ticket.AddSubCabecera("MANIANA:");
+  ticket.AddSubCabecera(ticket.DarEspacio());
+  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
+  ticket.AddSubCabecera(ticket.DarEspacio());
+    for(ResumenJugada r : primera){ 
+    this.Nposiciones.clear();
+    this.quinielas.clear();
+    this.turnos.clear();
+  String patron = "_";
+  Pattern p1 = Pattern.compile(patron);
+  String[] resultado= p1.split(r.getResumen());
+ int tipo;
+ tipo =(resultado[0].equals("S"))? 1 : 2;
+  
+  String numero = resultado[1];
+  String monto = resultado[5];
+  String posiciones = resultado[4];
+  String[] quini = limpiarFormato(resultado[2]);
+  StringBuilder sbq = new StringBuilder();
+        for(String q : quini){
+            if(!q.equals("O")){
+                sbq.append(q);
+                sbq.append("-");
+            }
+        }
+  String quinielas1 = sbq.toString();
+  String quinielasT = "TODAS";
+  String quinielas;
+  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
+    StringBuilder sb = new StringBuilder("                           ");
+            
+  sb.replace(0,4, String.valueOf(numero));
+     sb.replace(6,7,String.valueOf(posiciones));
+     sb.replace(10,19,String.valueOf(quinielas));
+     //if(sb.length()<22)     
+       sb.setLength(27);
+     sb.replace(23,27, String.valueOf(monto));
+  ticket.AddSubCabecera(sb.toString());    
+  ticket.AddSubCabecera(ticket.DarEspacio());
+     }
+     
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+ticket.AddSubCabecera(ticket.DarEspacio());
 }
 if(!primera.isEmpty()){
   ticket.AddSubCabecera(ticket.DarEspacio());
