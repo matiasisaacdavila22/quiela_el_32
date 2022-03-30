@@ -1,2 +1,8 @@
 configuracionde xampp al iniciar windows
 C:\Users\holasur\holasur\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+
+no funcuiona la impresora con windows 10 :
+	ir a configuracion de la impresora y 
+	seleccionar la interfas usb (donde figure la impresora de tiket x58)
+
+pd: para este problema en particular estaba seteada el puerto LPT1

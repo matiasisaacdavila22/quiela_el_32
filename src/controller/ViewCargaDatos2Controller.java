@@ -153,6 +153,8 @@ public class ViewCargaDatos2Controller implements Initializable {
     private TableColumn<?, ?> colCorrientes;
     @FXML
     private HBox lblCorrientes;
+    @FXML
+    private HBox lblDe_las_10;
 
     /**
      * Initializes the controller class.
@@ -165,10 +167,10 @@ public class ViewCargaDatos2Controller implements Initializable {
         ganadaController = new GanadaController();
         boletaController = new BoletaController();
         this.quinielas = new String[]{"N", "P", "F", "E", "C", "O", "R"};
-        this.turnos = new String[]{primera, segunda, tercera, cuarta};
+        this.turnos = new String[]{maniana, primera, segunda, tercera, cuarta};
         this.quiniela = 0;
         this.turno = 0;
-        this.lblTurnos = new HBox[]{lblMatutina,lblVespertina,lblTarde,lblNocturna};
+        this.lblTurnos = new HBox[]{lblDe_las_10, lblMatutina, lblVespertina, lblTarde, lblNocturna};
         this.lblQuinielas = new HBox[]{lblNacional,lblProvincia,lblSantafe,lblEntrerios,lblCordoba,lblOros,lblCorrientes};
         this.tblQuinielas = new TableView[]{tblNacional,tblProvincia,tblSantafe,tblEntrerios,tblCordoba,tblOros,tblCorrientes};
         
@@ -279,7 +281,7 @@ public void setFecha(){
 } 
   
     private void upTurno(int turno){
-        if(turno < 3){
+        if(turno < 4){
             this.turno++;
         }
           System.out.println(this.turno);

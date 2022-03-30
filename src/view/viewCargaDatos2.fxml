@@ -16,7 +16,7 @@
          </font>
       </Label>
       <TextField fx:id="txtNumero" layoutX="13.0" layoutY="421.0" />
-      <HBox fx:id="lblMatutina" alignment="CENTER_LEFT" layoutX="25.0" layoutY="139.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
+      <HBox fx:id="lblMatutina" alignment="CENTER_LEFT" layoutX="22.0" layoutY="187.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="MAÑANA" textFill="#757474">
                <font>
@@ -31,7 +31,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblNocturna" alignment="CENTER_LEFT" layoutX="20.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="175.0" styleClass="btns">
+      <HBox fx:id="lblNocturna" alignment="CENTER_LEFT" layoutX="19.0" layoutY="317.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="37.0" prefWidth="175.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="NOCTURNA" textFill="#757474">
                <font>
@@ -46,7 +46,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblTarde" alignment="CENTER_LEFT" layoutX="20.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
+      <HBox fx:id="lblTarde" alignment="CENTER_LEFT" layoutX="20.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
          <children>
             <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="TARDE" textFill="#757474">
                <font>
@@ -61,7 +61,7 @@
             <Insets left="10.0" />
          </padding>
       </HBox>
-      <HBox fx:id="lblVespertina" alignment="CENTER_LEFT" layoutX="22.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="170.0" styleClass="btns">
+      <HBox fx:id="lblVespertina" alignment="CENTER_LEFT" layoutX="21.0" layoutY="233.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="170.0" styleClass="btns">
          <children>
             <Label text="MATUTINA" textFill="#757474">
                <font>
@@ -223,6 +223,21 @@
       <HBox fx:id="lblCorrientes" alignment="CENTER_LEFT" layoutX="1079.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="122.0" styleClass="btns">
          <children>
             <Label prefHeight="20.0" prefWidth="135.0" stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="CORRIENTES" textFill="#757474">
+               <font>
+                  <Font name="Cambria" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </HBox>
+      <HBox fx:id="lblDe_las_10" alignment="CENTER_LEFT" layoutX="24.0" layoutY="141.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="173.0" styleClass="btns">
+         <children>
+            <Label stylesheets="@../../../Programa_quiniela/src/view/vistatablero.css" text="DE_LAS_10" textFill="#757474">
                <font>
                   <Font name="Cambria" size="15.0" />
                </font>

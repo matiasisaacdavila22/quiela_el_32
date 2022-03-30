@@ -228,9 +228,9 @@
             <TableView fx:id="tblJugada" prefHeight="242.0" prefWidth="932.0" stylesheets="@tabla.css">
               <columns>
                 <TableColumn fx:id="colJId" prefWidth="62.0" text="id" />
-                <TableColumn fx:id="colJTurno" prefWidth="122.0" text="turno" />
-                  <TableColumn fx:id="colJQuiniela" prefWidth="127.0" text="quiniela" />
-                  <TableColumn fx:id="colJNumero" prefWidth="305.0" text="numero" />
+                <TableColumn fx:id="colJTurno" prefWidth="145.0" text="turno" />
+                  <TableColumn fx:id="colJQuiniela" prefWidth="153.0" text="quiniela" />
+                  <TableColumn fx:id="colJNumero" prefWidth="256.0" text="numero" />
                   <TableColumn fx:id="colJPosicion" minWidth="0.0" prefWidth="96.0" text="posicion" />
                   <TableColumn fx:id="colJMonto" prefWidth="118.0" text="monto" />
                   <TableColumn fx:id="colJEstado" text="estado" />
