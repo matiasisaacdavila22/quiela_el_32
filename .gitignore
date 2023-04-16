@@ -1,1 +1,4 @@
 /build/
+/.metadata/
+/dist/
+/nbproject/private/

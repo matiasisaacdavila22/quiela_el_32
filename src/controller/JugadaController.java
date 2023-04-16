@@ -78,20 +78,34 @@ public class JugadaController {
     }
    
    public ArrayList<Jugada> generarJugada(ArrayList<Integer> posiciones, ArrayList<String> quinielas, ArrayList<String> turnos, String nombre,int tipo, String numero, int cifras, int monto) {
-    
-       ArrayList<Jugada> jugadas = new ArrayList();
+    ArrayList<Jugada> jugadas = new ArrayList();
+
+    try {
+        String horaActual = this.hora();
+        DateFormat dateFormat = new SimpleDateFormat(FH);
+        Date horaVespertinaM = dateFormat.parse(FH_SEGUNDA_M);
+        Date  hora = dateFormat.parse(horaActual); 
+        Date horaTardeM = dateFormat.parse(FH_TERCERA_M);
+
 //conso
         for (String turno : turnos) {
             for (String quiniela: quinielas) {
                  for (Integer posicion : posiciones) {
                    if(!(((turno.equals(primera))||(turno.equals(tercera))) && (quiniela.equals("O")))){
+                    if(!(quiniela.equals(mendoza) && ((turno.equals(segunda) && (hora.after(horaVespertinaM))) || (turno.equals(tercera) && (hora.after(horaTardeM)))))){
                     Jugada j = new Jugada(tipo, numero, cifras, posicion, monto, quiniela, turno, false);
                     jugadas.add(j);                           
                      }
+                    }
                 }    
             }
         }
+    } catch (ParseException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
        return jugadas;
+
     } 
    
 public ResumenJugada generarResumenJugadas(ArrayList<Integer> posiciones, ArrayList<String> quinielas, ArrayList<String> turnos, String nombre,int tipo, String numero, int cifras, int monto) {
@@ -208,153 +222,7 @@ public ResumenJugada generarResumenJugadas(ArrayList<Integer> posiciones, ArrayL
             return jugadas;
         }
     }
-//public ObservableList<Jugada> buscarJugadasxId(int idBoleta) {
-//         
-//        ObservableList<Jugada> j;
-//        j = FXCollections.observableArrayList();
-//        try {
-//           this.con = new Conexion();
-//    
-//
-//            Statement orden = cone2.createStatement();
-//            String sSQL = "SELECT * from Jugadas where Jugadas.idBoleta="+idBoleta;
-//            ResultSet r = orden.executeQuery(sSQL);
-//
-//            System.out.println("entrar a la consulta");
-//            while (r.next()) {
-//
-//                int idJugada = r.getInt("idJugada");
-//                int tipo =r.getInt("tipo");
-//               String numero = r.getString("numero");
-//                int cifras = r.getInt("cifras");
-//                int posicion = r.getInt("posicion");
-//                int monto = r.getInt("monto");
-//
-//                String quiniela = r.getString("quiniela");
-//                String turno = r.getString("turno");
-//                String nombre = r.getString("nombre");
-//               
-//                Date fecha = r.getDate("fecha");
-//                int idPago = r.getInt("idPago");
-//                String hora = r.getString("hora");
-//                boolean gano = r.getBoolean("gano");
-//                boolean pago = r.getBoolean("pago");
-//                int idRedoblona = r.getInt("idRedoblona");
-//                int idGanada = r.getInt("idGanada");
-//
-//                Jugada jugada = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, idPago, hora, nombre, gano, pago, idBoleta, idRedoblona, idGanada);
-//                j.add(jugada);
-//                
-//            }
-//            orden.close();
-//            r.close();
-//            return j;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("error :" + ex);
-//            return j;
-//        }
-//    }
-//public ArrayList<Jugada> consultaJugadas() {
-//        
-//      ArrayList<Jugada>j = new ArrayList();
-//
-//        try {
-//            this.con = new Conexion();
-//    
-//
-//            Statement orden = cone2.createStatement();
-//            String sSQL = "SELECT Jugadas.*,Boletas.* from Jugadas join Boletas on Jugadas.idBoleta=Boletas.id order by idBoleta desc";
-//
-//            ResultSet r = orden.executeQuery(sSQL);
-//
-//            System.out.println("entrar a la consulta");
-//            while (r.next()) {
-//
-//                int idJugada = r.getInt("idJugada");
-//                int tipo =r.getInt("tipo");
-//               String numero = r.getString("numero");
-//                int cifras = r.getInt("cifras");
-//                int posicion = r.getInt("posicion");
-//                int monto = r.getInt("monto");
-//
-//                String quiniela = r.getString("quiniela");
-//                String turno = r.getString("turno");
-//                String nombre = r.getString("nombre");
-//                int idBoleta = r.getInt("idBoleta");
-//                int id = r.getInt("id");
-//                Date fecha = r.getDate("fecha");
-//                int idPago = r.getInt("idPago");
-//                String hora = r.getString("hora");
-//                boolean gano = r.getBoolean("gano");
-//                boolean pago = r.getBoolean("pago");
-//                int idRedoblona = r.getInt("idRedoblona");
-//                int idGanada = r.getInt("idGanada");
-//
-//                Jugada jugada = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, idPago, hora, nombre, gano, pago, idBoleta, idRedoblona, idGanada);
-//                j.add(jugada);
-//              
-//            }
-//             orden.close();
-//            r.close();
-//            return j;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("error :" + ex);
-//            return null;
-//        }
-//    }
-//public ArrayList<Jugada> consultar(String buscar) {
-//        System.out.println("entro a consultar.....");
-//        ArrayList<Jugada> j = new ArrayList();
-//      //  j = FXCollections.observableArrayList();
-//
-//        try {
-//            this.con = new Conexion();
-//       
-//
-//            Statement orden = cone2.createStatement();
-//            String sSQL = "SELECT Jugadas.*,Boletas.* from Jugadas join Boletas on Jugadas.idBoleta=Boletas.id order by idBoleta desc";
-//
-//            ResultSet r = orden.executeQuery(sSQL);
-//
-//            System.out.println("entrar a la consulta");
-//            while (r.next()) {
-//
-//                int idJugada = r.getInt("idJugada");
-//                int tipo =r.getInt("tipo");
-//                String numero = r.getString("numero");
-//                int cifras = r.getInt("cifras");
-//                int posicion = r.getInt("posicion");
-//                int monto = r.getInt("monto");
-//
-//                String quiniela = r.getString("quiniela");
-//                String turno = r.getString("turno");
-//                String nombre = r.getString("nombre");
-//                int idBoleta = r.getInt("idBoleta");
-//                int id = r.getInt("id");
-//                Date fecha = r.getDate("fecha");
-//                int idPago = r.getInt("idPago");
-//                String hora = r.getString("hora");
-//                boolean gano = r.getBoolean("gano");
-//                boolean pago = r.getBoolean("pago");
-//                int idRedoblona = r.getInt("idRedoblona");
-//                int idGanada = r.getInt("idGanada");
-//
-//                Jugada jugada = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, idPago, hora, nombre, gano, pago, idBoleta, idRedoblona, idGanada);
-//                j.add(jugada);
-//                System.out.println("creo jugada de forma correcata");
-//            }
-//             orden.close();
-//            r.close();
-//            return j;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("error :" + ex);
-//            return null;
-//        }
-//    }
-//
+
     public boolean eliminarJugada(Jugada j) {
        
         String sSQL = "delete from jugada where idJugada=?";
@@ -397,18 +265,7 @@ public boolean eliminarJugada(int idBoleta) {
         }
     }
     
-//
-//    public int tiempoJugada(Jugada j) {
-//        Date fechaInicial = j.getFecha();
-//        Date fechaFinal = new Date();
-//        int dias = (int) ((fechaFinal.getTime() - fechaInicial.getTime()) / 86400000);
-//        return dias;
-//    }
-//
-//    public void actualizarXfecha(ObservableList<Jugada> jugadas) {
-//        jugadas.stream().filter((n) -> tiempoJugada(n) > 7).forEach((n) -> eliminarJugada(n));
-//    }
-//
+
 public void actualizarJugadas(Ganada ganada){
     ArrayList<Jugada> jugadas = new ArrayList();
     ArrayList<String> numeros = new ArrayList();
@@ -459,25 +316,7 @@ public void actualizarJugadas(Ganada ganada){
         }
         return null;
     }
-//
-//    public ArrayList<Jugada> buscameGanadores(ArrayList<Jugada> listaCoinsidencias, Ganada ganada) {
-//        listaCoinsidencias.stream().forEach((n)->System.out.println("los numeros son "+n.getNumero()));
-//        ArrayList<Jugada> aux = new ArrayList();
-//        for (Jugada jugada : listaCoinsidencias) {
-//           if(!jugada.isGano()){
-//               int premio = jugada.getPosicion();
-//                if(jugada.getTipo()==3)premio=20;
-//                if(jugada.getTipo()==5)premio=18;
-//                if(jugada.getTipo()==8)premio=20;
-//            if(premio>= ganada.getPosicion()) {
-//                jugada.setGano(true);
-//                jugada.setIdGanada(ganada.getIdGanada());
-//                this.actualizarJugada(jugada);}
-//            }
-//        }
-//        return aux;
-//    }
-//
+
 public boolean actualizarJugada(Jugada jugada) {
         String sSQL = "update Jugada set gano=? where idJugada=?";
         try {
@@ -506,19 +345,7 @@ public boolean actualizarJugada(Jugada jugada) {
         }return false;
     }
 
-//    public void buscameGanadores(Ganada ganada) {
-//        ArrayList<String> numeros = this.desarmarNumero(ganada.getNumero());
-//        ArrayList<Jugada> jugadas;
-//        Date fecha = ganada.getFecha();
-//        java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
-//        String hora = ganada.getHora();
-//        for (int i = 0; i < numeros.size(); i++) {
-//            Ganada ganada2 = new Ganada(ganada.getIdGanada(),numeros.get(i), ganada.getPosicion(), ganada.getQuiniela(), ganada.getTurno(), fechaSql, hora);
-//            
-//            jugadas = this.pedirJugadasBase(ganada2);
-//            this.buscameGanadores(jugadas, ganada2);
-//        }
-//        }
+
     public ArrayList<String> desarmarNumero(String numero) {
 
         ArrayList<String> lista = new ArrayList();        
@@ -530,16 +357,6 @@ public boolean actualizarJugada(Jugada jugada) {
         return lista;
     }
 
-//    private ArrayList<Integer> desarmarNumero(int numero, ArrayList<Integer> lista) {
-//       /* int cifras = contarCifras(numero);
-//        if (cifras > 1) {
-//            lista.add(numero);
-//            numero = (int) (numero % (Math.pow(10, (cifras - 1))));
-//            return desarmarNumero(numero, lista);
-//        }
-//        lista.add(numero);*/
-//        return lista;
-//    }
 
     public boolean jugadaGano(Jugada j) {
         if (j.isGano() && j.getTipo()==1) {
@@ -592,55 +409,7 @@ public Jugada buscarPareja(Jugada jugada) {
         }
         return null;
     }
-//
-//public ArrayList<Jugada> buscarBorratina(Jugada jugada) {
-//     ArrayList<Jugada> jugadas = new ArrayList();
-//        try {
-//            con = new Conexion();
-//    
-//            Statement orden = cone2.createStatement();
-//            String sSQL2 = "SELECT * from Jugadas where Jugadas.idboleta=" + jugada.getIdBoleta() + " and Jugadas.idRedoblona=" + jugada.getIdRedoblona();
-//            ResultSet r = orden.executeQuery(sSQL2);
-//            while (r.next()) {
-//                int idJugada = r.getInt("idJugada");
-//                int tipo = r.getInt("tipo");
-//               String  numero = r.getString ("numero");
-//                int cifras = r.getInt("cifras");
-//                int posicion = r.getInt("posicion");
-//                int monto = r.getInt("monto");
-//                String quiniela = r.getString("quiniela");
-//                String turno = r.getString("turno");
-//                String nombre = r.getString("nombre");
-//                boolean gano = r.getBoolean("gano");
-//                boolean pago = r.getBoolean("pago");
-//                int idBoleta = r.getInt("idBoleta");
-//                int idGanada = r.getInt("idGanada");
-//                int idRedoblona = r.getInt("idRedoblona");
-//                Date fecha = r.getDate("fecha");
-//                int idPago = r.getInt("idPago");
-//                String hora = r.getString("hora");
-//
-//                
-//                Jugada j = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, idPago, hora, nombre, gano, pago, idBoleta, idRedoblona, idGanada);
-//              System.out.println("entro el :" + j.getNumero() + " en la posicion :" + j.getPosicion() + "y el estado de gano es : " + j.isGano());
-//                jugadas.add(j);
-//                }
-//             orden.close();
-//            r.close();
-//            return jugadas;
-//                
-//        } catch (SQLException ex) {
-//            System.out.println("error :" + ex);
-//
-//        }
-//        return jugadas;
-//    }    
-//    
-//public boolean isTienePremio(Jugada j) {
-//        if (this.jugadaGano(j)) {
-//            return true;
-//        }else return false;
-//    }
+
 
 public int calcularPremio(Jugada j) {
             if(j.isGano() && j.getTipo()==1){
@@ -666,15 +435,7 @@ public int premio(Jugada j){
    int premio=(int) (monto*multiplicador); 
    return premio;
     }
-// private Jugada jugadaUno(ArrayList<Jugada>pareja){
-//     if(pareja.get(0).getPosicion()< pareja.get(1).getPosicion())return pareja.get(0);
-//     else return pareja.get(1);
-// }
-//   private Jugada jugadaDos(ArrayList<Jugada>pareja){
-//     if(pareja.get(0).getPosicion()< pareja.get(1).getPosicion())return pareja.get(1);
-//     else return pareja.get(0);
-// }
-//   
+ 
 private int premio(Jugada j, Jugada g){
     System.out.println("entro por fina calular el premio******");
     Jugada uno;Jugada dos;
@@ -715,151 +476,7 @@ public boolean sonPareja(Jugada uno, Jugada dos){
    return false;
 }
 
-//
-//void actualizarNumero(Jugada jugada, int parseInt) {
-//            String sSQL = "update Jugadas set numero=? where idJugada=?";
-//
-//        try {
-//            con = new Conexion();
-//       
-//            PreparedStatement pst = cone2.prepareStatement(sSQL);
-//            pst.setString(1, jugada.getNumero());
-//            
-//            pst.setInt(3, jugada.getIdJugada());
-//
-//            int n = pst.executeUpdate();
-//
-//            if (n != 0) {
-//                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-//                alerta.setHeaderText(null);
-//                alerta.setTitle("informacion");
-//                alerta.setContentText("SE ACTUALIZO EL REGISTRO JUGADAS");
-//                alerta.showAndWait();
-//                pst.close();
-//                
-//            } else {
-//                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-//                alerta.setHeaderText(null);
-//                alerta.setTitle("informacion");
-//                alerta.setContentText("ERROR AL ACTUALIZAR EL REGISTRO");
-//                alerta.showAndWait();
-//               pst.close();
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println("error :" + e);
-//
-//        }
-//    }
-//
-//public boolean isTienePremio(ArrayList<Jugada> jugadas) {
-//    System.out.println("la borratina es de   :"+jugadas.size() );
-//        int ganadas=0;
-//        int borratina=jugadas.get(0).getTipo();
-//        boolean pagado=true;
-//        for(Jugada jugada : jugadas){
-//            if(jugada.isGano())ganadas++;
-//            pagado=pagado && jugada.isPago();
-//        }
-//       if(borratina==3 && ganadas==3 && !pagado){
-//         System.out.println("borratina de 3 con ganadores :"+ganadas+" y el estado del pago es :"+pagado);
-//           return true;
-//      }
-//       if(borratina==5 && ganadas >=3 && !pagado){
-//           System.out.println("borratina de 5 con ganadores :"+ganadas+" y el estado del pago es :"+pagado);
-//           return true;
-//       } 
-//       if(borratina==8 && ganadas>=6 && !pagado){System.out.println("borratina de 8 con ganadores :"+ganadas+" y premio es :"+pagado);
-//        return true;
-//    }
-//           return false;
-//  }
-//public int isTienePremio(ArrayList<Jugada> jb1, ArrayList<Jugada> jb2 ) {
-//        int ganadas=0;
-//        boolean pagado=false;
-//        for(int i=0;i<jb1.size();i++){
-//            if(jb1.get(i).isGano()|| jb2.get(i).isGano())ganadas++;
-//              pagado=pagado || (jb1.get(i).isPago() || jb2.get(i).isPago());
-//        }
-//      
-//       if(ganadas>=6 && !pagado){System.out.println("borratina de 8 con ganadores :"+ganadas+" y el estado del pago es :"+pagado);
-//        return ganadas;
-//    }
-//           return ganadas+10;
-//  }
-//
-//    
-//public int calcularPremioBorratina(ArrayList<Jugada> jugadas) {
-//    GanadaController controladorGanada=new GanadaController();
-//    ArrayList<Integer>posiciones = new ArrayList();
-//        int premio;
-//        for(int i=0;i<jugadas.size();i++){
-//         if(jugadas.get(i).isGano()){
-//        //  Ganada ganada= controladorGanada.buscar(jugadas.get(i).getIdGanada());
-//          posiciones.add(jugadas.get(i).getIdGanada()); //el id de ganada contne la posicion de la ganada
-//         }
-//           }
-//               
-//         if(jugadas.get(0).getTipo()==3){
-//        premio=this.calcularBorratina3(3,posiciones);
-//        return premio;
-//        } 
-//           if(jugadas.get(0).getTipo()==5){
-//               System.out.println("detecto que la borratina es tipo 5 y que tiene premio entro a acalcular ");
-//       premio=this.calcularBorratina5(5, jugadas);
-//         return premio;
-//           }
-//            if(jugadas.get(0).getTipo()==8){
-//        premio=this.calcularBorratina8(8, jugadas);
-//        return premio;
-//           }
-//    return 0;
-//    }
-//
-//private int calcularBorratina3(int i, ArrayList<Integer> posiciones) {
-//        if(posiciones.get(0)==0 && posiciones.get(1)==1 && posiciones.get(2)==2)return 35000;
-//        else if(posiciones.get(0)<3 && posiciones.get(1)<3 && posiciones.get(2)<3)return 16000;
-//        else if(posiciones.get(0)<4 && posiciones.get(1)<4 && posiciones.get(2)<4)return 2800;
-//        else if(posiciones.get(0)<7 && posiciones.get(1)<7 && posiciones.get(2)<7)return 1600;
-//        else if(posiciones.get(0)<10 && posiciones.get(1)<10 && posiciones.get(2)<10)return 650;
-//        else if(posiciones.get(0)<15 && posiciones.get(1)<15 && posiciones.get(2)<15)return 300;
-//        else if(posiciones.get(0)<20 && posiciones.get(1)<20 && posiciones.get(2)<20)return 120;
-//        else return 0;
-//    }
-//private int calcularBorratina5(int i, ArrayList<Jugada> jugadas) {
-//    int ganadas=0;
-//   for(Jugada jugada : jugadas){
-//            if(jugada.isGano()){
-//                System.out.println("ganadas son "+ganadas);
-//                ganadas++;}
-//                 }
-//    System.out.println("la cantidad de ganadas que detectamos ene sta instancia es de :"+ganadas+"de cantidad de jugadas "+jugadas.size());
-//        if(ganadas==5)return 10000;
-//        if(ganadas==4)return 500;
-//        if(ganadas==3)return 65;
-//        
-//       else return 0;
-//    }
-//private int calcularBorratina8(int i, ArrayList<Jugada> jugadas) {
-//    int ganadas=0;
-//    ArrayList<String>numeros=new ArrayList();
-//     for(Jugada jugada : jugadas){
-//            if(jugada.isGano()){
-//                ganadas++;
-//                 if(!numeros.contains(jugada.getNumero())){
-//                     numeros.add(jugada.getNumero());
-//                 }
-//            System.out.println("ganada de boratina  es "+ganadas+"///////////////////////y numeros aderidos son "+numeros.size());
-//          }
-//     }
-//        if(numeros.size()==8)return 8000;
-//        if(ganadas==7)return 328;
-//        if(ganadas==6)return 35;
-//        
-//       else return 0;
-//    }
-//
-//
+
 public void actualizarJugada(int id) {
    
    sSQL = "update Jugada set gano=?,idGanada=? where idGanada=?";
@@ -895,46 +512,6 @@ public void actualizarJugada(int id) {
         }
     }
 
-//public ArrayList<Jugada> buscameGanadores(int id) {
-//    ArrayList<Jugada> j =new ArrayList();
-//       try {
-//            this.con = new Conexion();
-//      
-//            Statement orden = cone2.createStatement();
-//            String sSQL = "SELECT * from Jugadas where Jugadas.idGanada="+id;
-//            ResultSet r = orden.executeQuery(sSQL);
-//          while (r.next()) {
-//                int idJugada = r.getInt("idJugada");
-//                int tipo =r.getInt("tipo");
-//                String  numero = r.getString ("numero");
-//                int cifras = r.getInt("cifras");
-//                int posicion = r.getInt("posicion");
-//                int monto = r.getInt("monto");
-//                String quiniela = r.getString("quiniela");
-//                String turno = r.getString("turno");
-//                String nombre = r.getString("nombre");
-//                int idBoleta = r.getInt("idBoleta");
-//                Date fecha = r.getDate("fecha");
-//               int idPago = r.getInt("idPago");
-//                String hora = r.getString("hora");
-//                boolean gano = r.getBoolean("gano");
-//                boolean pago = r.getBoolean("pago");
-//                int idRedoblona = r.getInt("idRedoblona");
-//                int idGanada = r.getInt("idGanada");
-//
-//                Jugada jugada = new Jugada(idJugada, tipo, numero, cifras, posicion, monto, quiniela, turno, (java.sql.Date) fecha, idPago, hora, nombre, gano, pago, idBoleta, idRedoblona, idGanada);
-//                j.add(jugada);
-//                           }
-//           orden.close();
-//            r.close();
-//            return j;
-//
-//        } catch (SQLException ex) {
-//            System.out.println("error :" + ex);
-//            return null;
-//        }
-//    }
-//
 ArrayList<Jugada> consultar(Date fecha, String quiniela, String turno) {
 
      ArrayList<Jugada> jugadas = new ArrayList();

@@ -15,6 +15,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date; 
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -351,7 +352,13 @@ public class ViewQuinielaController implements Initializable {
                             txtQuiniela1.setText(s);
                            }else { quinielas.add("R");
                             String s = this.setReset(quinielas);
-                            txtQuiniela1.setText(s);}break;         
+                            txtQuiniela1.setText(s);}break;   
+                  case M :  if(quinielas.contains("M")){quinielas.remove("M");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);
+                           }else { quinielas.add("M");
+                            String s = this.setReset(quinielas);
+                            txtQuiniela1.setText(s);}break;                 
             }
                });
            
@@ -525,16 +532,7 @@ public class ViewQuinielaController implements Initializable {
               
     }
  ); 
-//    TimerTask timerTask = new TimerTask()
-//     {
-//         public void run() 
-//         {
-//              textHora.setText(jugadaController.hora());
-//         }
-//     };
-//
-//     Timer timer = new Timer();
-//     timer.scheduleAtFixedRate(timerTask, 0, 1000);   
+
      
  }             
 
@@ -690,7 +688,7 @@ private void prepararRdoblona(String nombre, String numero1, String numero2, int
                               
                 for(int i=0;i<quinielas.size();i++){
                    for(int j=0;j<turnos.size();j++){     
-                if(!(((turnos.get(j).equals(primera))||(turnos.get(j).equals(tercera))) && (quinielas.get(i).equals(oros)))){
+                if(!(((turnos.get(j).equals(maniana))||(turnos.get(j).equals(primera))||(turnos.get(j).equals(tercera))) && (quinielas.get(i).equals(oros)))){
                 Jugada jugada1=new Jugada(tipo,numero1, cifras, Nposiciones.get(0), monto, quinielas.get(i), turnos.get(j),false); 
                 Jugada jugada2=new  Jugada(tipo, numero2, cifras, posicion2, monto, quinielas.get(i), turnos.get(j), false); 
                 Redoblona redoblona= new Redoblona(jugada1,jugada2);
@@ -909,25 +907,52 @@ private int totalResumen(ResumenJugada resumen){
   String [] posiciones = this.limpiarFormato(resultado[4]);
   
   int monto=Integer.parseInt(resultado[5]);
+
  
 int totalResumen = 0;
 if("R".equals(tipo)){  
     for(String quiniela : quinielas){
         for(String turno : turnos){//restriccion de jugada oros no juega a las 11hs ni a las 17hs
-            if(!(quiniela.equals("O") && ((turno.equals("11") || turno.equals("17"))))){
+            if(!(quiniela.equals(oros) && ((turno.equals(primera) || turno.equals(tercera))))){
+              
                 totalResumen = totalResumen + monto;
+                
             }
         }
     }
  return totalResumen;
 }else if("S".equals(tipo)) {  
-   for(String quiniela : quinielas){
-        for(String turno : turnos){//restriccion de jugada oros no juega a las 11hs ni a las 17hs
-            if(!(quiniela.equals("O") && ((turno.equals(primera) || turno.equals(tercera) || turno.equals(maniana))))){
+
+try {
+  String horaActual = jugadaController.hora();
+  DateFormat dateFormat = new SimpleDateFormat(FH);
+  Date horaVespertinaM = dateFormat.parse(FH_SEGUNDA_M);
+  Date  hora = dateFormat.parse(horaActual); 
+  Date horaTardeM = dateFormat.parse(FH_TERCERA_M);
+
+ 
+	
+
+
+   //for(String quiniela : quinielas){
+    for(int i = 0; quinielas.length > i; i++){
+       // for(String turno : turnos){//restriccion de jugada oros no juega a las 11hs ni a las 17hs
+        String quiniela = quinielas[i];
+        for(int j = 0; turnos.length > j; j++){
+          String turno = turnos[j];
+            if(!(quiniela.equals(oros) && ((turno.equals(primera) || turno.equals(tercera) || turno.equals(maniana))))){
+
+              if(!(quiniela.equals(mendoza) && ((turno.equals(segunda) && (hora.after(horaVespertinaM))) || (turno.equals(tercera) && (hora.after(horaTardeM)))))){
+
                 totalResumen = totalResumen + monto*numeros.length*posiciones.length;
             }
+          }
         }
     }
+  } catch (ParseException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+  }
   return totalResumen;
 }
 return 0;
@@ -1023,9 +1048,9 @@ private ArrayList<Redoblona> listarRedoblonas(ArrayList<Jugada>jugadas){
     ArrayList<Redoblona>auxRedoblonas=new ArrayList();
     ArrayList<Integer>idRedoblona=new ArrayList();
     for(Jugada j : jugadas){
-        if(j.getTipo()==2){
+        if(j.getTipo()== 2){
             if(!idRedoblona.contains(j.getIdRedoblona())){
-                Redoblona r=this.armarRedoblona(j);
+                Redoblona r = this.armarRedoblona(j);
                 idRedoblona.add(j.getIdRedoblona());
                 auxRedoblonas.add(r);
             }
@@ -1038,7 +1063,7 @@ private ArrayList<Redoblona> listarRedoblonas(ArrayList<Jugada>jugadas){
 private Redoblona armarRedoblona(Jugada jugada){
     if(jugada.getTipo()==2){
         Jugada pareja=this.buscarPareja(jugada);
-        if(jugada.getPosicion()<pareja.getPosicion()){
+        if(jugada.getPosicion()< pareja.getPosicion()){
             Redoblona redoblona=new Redoblona(jugada,pareja);
             return redoblona;
         }else if(jugada.getPosicion()>pareja.getPosicion()){
@@ -1146,13 +1171,15 @@ private ArrayList<String> setHoras() {
                   Date horaMatutina = dateFormat.parse(FH_PRIMERA);
                   Date horaVespertina =dateFormat.parse(FH_SEGUNDA);
                   Date horaTarde =dateFormat.parse(FH_TERCERA);
+                  Date horaVespertinaM =dateFormat.parse(FH_SEGUNDA_M);
+                  Date horaTardeM =dateFormat.parse(FH_TERCERA_M);
                   Date horaNocturna= dateFormat.parse(FH_CUARTA);
                   Date hora= dateFormat.parse(horaActual);
                    
                 if (hora.before(horaManiana)){
                       turnosHabilitados2.add(maniana);
                       turnosHabilitados2.add(primera);
-                      turnosHabilitados2.add(segunda);
+                      turnosHabilitados2.add(segunda);            
                       turnosHabilitados2.add(tercera);
                       turnosHabilitados2.add(cuarta);
                       return turnosHabilitados2;
@@ -1171,10 +1198,10 @@ private ArrayList<String> setHoras() {
                       return turnosHabilitados2;
                 }
               else if (hora.before(horaTarde)){
-                      turnosHabilitados2.add(tercera);
-                      turnosHabilitados2.add(cuarta);
-                      return turnosHabilitados2;
-                }
+                  turnosHabilitados2.add(tercera);
+                  turnosHabilitados2.add(cuarta);
+                  return turnosHabilitados2;
+            }
               else if (hora.before(horaNocturna)){
                     turnosHabilitados2.add(cuarta);
                     return turnosHabilitados2;
@@ -1231,11 +1258,14 @@ public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
          quinielas.add("E");
          quinielas.add("C");
          quinielas.add("O");
-        // quinielas.add("R"); "esta deshabilitada"
+         quinielas.add("M");
+         quinielas.add("R");
+         quinielas.add("CH");
+  
          return;
     }else{
      for(String s : quini){
-      if(s.length()==1){
+      if(s.length()<= 2){
         if(!esNumero(s)){
          if("N".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("P".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
@@ -1243,8 +1273,10 @@ public void agregarQuinielas(String[] quini, ArrayList<String> quinielas) {
          if("E".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("C".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
          if("O".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
-      // if("R".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase()); "esta deshabilitada"
-        }
+         if("M".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
+         if("CH".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
+         if("R".equals(s.toUpperCase()) && !quinielas.contains(s.toUpperCase()))quinielas.add(s.toUpperCase());
+       }
       }
      }
     }
@@ -1628,8 +1660,9 @@ for(ResumenJugada r : jugadasTabla){
       resumens.add(r2);
       id++;
   }
-  resumens.stream().forEach((n)->System.out.println(n.getResumen()));
+ // resumens.stream().forEach((n)->System.out.println(n.getResumen()));
 }else if(resultado[0].equals("R")){
+   
     resumens.add(r);
 }
 }
@@ -1651,11 +1684,11 @@ ticket.AddCabecera("** EL 33 **");
 
 ticket.AddCabecera(ticket.DarEspacio());
 
-ticket.AddCabecera("JUEGUE GANE Y COBRE YA ...");
+ticket.AddCabecera("JUEGUE GANE Y COBRE YA...");
 
 ticket.AddCabecera(ticket.DarEspacio());
 
-ticket.AddCabecera(ticket.DibujarLinea(29));
+ticket.AddCabecera(ticket.DibujarLinea(35));
 /////////////////////////////////////////////////////////////////////////////////////
 ticket.AddSubCabecera(ticket.DarEspacio());
 
@@ -1667,12 +1700,12 @@ ticket.AddSubCabecera("Nombre : "+nombre);
 ticket.AddSubCabecera(ticket.DarEspacio());
 
  ArrayList<Jugada>aux = new ArrayList();   
-for(ResumenJugada r : resumens){  
-   String patron = "_";
+for(ResumenJugada r : resumens){ 
+  String patron = "_";
   Pattern p1 = Pattern.compile(patron);
   String[] resultado= p1.split(r.getResumen());
+  String [] turnos = this.limpiarFormato(resultado[3]);
   
-  String [] turnos = this.limpiarFormato(resultado[2]);
   for(String t : turnos){this.turnos.add(t);}
       if(this.turnos.contains(Config.maniana)){
         maniana.add(r);}
@@ -1683,23 +1716,24 @@ for(ResumenJugada r : resumens){
     if(this.turnos.contains(Config.tercera)){
         tarde.add(r);} 
     if(this.turnos.contains(Config.cuarta)){
-        nocturna.add(r);}   
+        nocturna.add(r);}  
+    //maniana.stream().forEach((n)->System.out.println(n.getResumen()));
 }
 if(!maniana.isEmpty()){
+    System.out.println("hay jugadas en la maniana!!");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("MANIANA:");
+  ticket.AddSubCabecera("PREVIA:");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
-  ticket.AddSubCabecera(ticket.DarEspacio());
-    for(ResumenJugada r : primera){ 
+  String quinielasAux = "";
+  for(int i = 0; maniana.size() > i; i ++) {
     this.Nposiciones.clear();
     this.quinielas.clear();
     this.turnos.clear();
   String patron = "_";
   Pattern p1 = Pattern.compile(patron);
-  String[] resultado= p1.split(r.getResumen());
+  String[] resultado= p1.split(maniana.get(i).getResumen());
  int tipo;
- tipo =(resultado[0].equals("S"))? 1 : 2;
+ tipo =(resultado[0].equals(simple))? 1 : 2;
   
   String numero = resultado[1];
   String monto = resultado[5];
@@ -1707,46 +1741,51 @@ if(!maniana.isEmpty()){
   String[] quini = limpiarFormato(resultado[2]);
   StringBuilder sbq = new StringBuilder();
         for(String q : quini){
-            if(!q.equals("O")){
+            if(!q.equals(oros)){
                 sbq.append(q);
                 sbq.append("-");
             }
         }
   String quinielas1 = sbq.toString();
-  String quinielasT = "TODAS";
-  String quinielas;
-  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
-    StringBuilder sb = new StringBuilder("                           ");
-            
-  sb.replace(0,4, String.valueOf(numero));
-     sb.replace(6,7,String.valueOf(posiciones));
-     sb.replace(10,19,String.valueOf(quinielas));
-     //if(sb.length()<22)     
-       sb.setLength(27);
-     sb.replace(23,27, String.valueOf(monto));
-  ticket.AddSubCabecera(sb.toString());    
+  if(i == 0) {
+	  quinielasAux = sbq.toString();
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+  if(!quinielas1.equals(quinielasAux)) {
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  quinielasAux = quinielas1;
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+     StringBuilder sb = new StringBuilder("                           ");
+  
+      sb.replace(0,5, String.valueOf(numero));
+      sb.replace(8,20,String.valueOf(posiciones));
+      sb.setLength(27);
+      sb.replace(20,27, String.valueOf("$" + monto));
+      ticket.AddSubCabecera(sb.toString()); 
+
   ticket.AddSubCabecera(ticket.DarEspacio());
-     }
+  }
      
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ticket.AddSubCabecera(ticket.DarEspacio());
+//ticket.AddSubCabecera(ticket.DarEspacio());
 }
 if(!primera.isEmpty()){
   ticket.AddSubCabecera(ticket.DarEspacio());
   ticket.AddSubCabecera("PRIMERA:");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
-  ticket.AddSubCabecera(ticket.DarEspacio());
-    for(ResumenJugada r : primera){ 
+  String quinielasAux = "";
+  for(int i = 0; primera.size() > i; i ++) {
     this.Nposiciones.clear();
     this.quinielas.clear();
     this.turnos.clear();
   String patron = "_";
   Pattern p1 = Pattern.compile(patron);
-  String[] resultado= p1.split(r.getResumen());
+  String[] resultado= p1.split(primera.get(i).getResumen());
  int tipo;
- tipo =(resultado[0].equals("S"))? 1 : 2;
+ tipo =(resultado[0].equals(simple))? 1 : 2;
   
   String numero = resultado[1];
   String monto = resultado[5];
@@ -1754,148 +1793,211 @@ if(!primera.isEmpty()){
   String[] quini = limpiarFormato(resultado[2]);
   StringBuilder sbq = new StringBuilder();
         for(String q : quini){
-            if(!q.equals("O")){
+            if(!q.equals(oros)){
                 sbq.append(q);
                 sbq.append("-");
             }
         }
   String quinielas1 = sbq.toString();
-  String quinielasT = "TODAS";
-  String quinielas;
-  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
-    StringBuilder sb = new StringBuilder("                           ");
-            
-  sb.replace(0,4, String.valueOf(numero));
-     sb.replace(6,7,String.valueOf(posiciones));
-     sb.replace(10,19,String.valueOf(quinielas));
-     //if(sb.length()<22)     
-       sb.setLength(27);
-     sb.replace(23,27, String.valueOf(monto));
-  ticket.AddSubCabecera(sb.toString());    
+  if(i == 0) {
+	  quinielasAux = sbq.toString();
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+  if(!quinielas1.equals(quinielasAux)) {
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  quinielasAux = quinielas1;
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+     StringBuilder sb = new StringBuilder("                           ");
+  
+      sb.replace(0,5, String.valueOf(numero));
+      sb.replace(8,20,String.valueOf(posiciones));
+      sb.setLength(27);
+      sb.replace(20,27, String.valueOf("$" + monto));
+      ticket.AddSubCabecera(sb.toString()); 
+
   ticket.AddSubCabecera(ticket.DarEspacio());
-     }
+  }
      
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ticket.AddSubCabecera(ticket.DarEspacio());
+//ticket.AddSubCabecera(ticket.DarEspacio());
 }
 if(!matutina.isEmpty()){
+
+try {
+  DateFormat dateFormat = new SimpleDateFormat(FH);
+  Date horaVespertinaM = dateFormat.parse(FH_SEGUNDA_M);
+  Date  horaB = dateFormat.parse(hora); 
   ticket.AddSubCabecera(ticket.DarEspacio());
   ticket.AddSubCabecera("MATUTINA:");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
+  ticket.AddSubCabecera("NUMERO POS  QUINIELA       $$$ ");
   ticket.AddSubCabecera(ticket.DarEspacio());
-    for(ResumenJugada r : matutina){  
+  String quinielasAux = "";
+  for(int i = 0; matutina.size() > i; i ++) {
     this.Nposiciones.clear();
     this.quinielas.clear();
     this.turnos.clear();
   String patron = "_";
   Pattern p1 = Pattern.compile(patron);
-  String[] resultado= p1.split(r.getResumen());
+  String[] resultado= p1.split(matutina.get(i).getResumen());
   int tipo=1;
   String numero = resultado[1];
   String monto=resultado[5];
   String posiciones = resultado[4];
-  String quinielas1 = resultado[2];
-  String quinielasT = "TODAS";
-  String quinielas;
-  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
-    StringBuilder sb = new StringBuilder("                           ");
-      
-     sb.replace(0,4, String.valueOf(numero));
-     sb.replace(6,7,String.valueOf(posiciones));
-     sb.replace(10,19,String.valueOf(quinielas));
-     sb.setLength(27);
-     sb.replace(23,27, String.valueOf(monto));
-  ticket.AddSubCabecera(sb.toString());    
+ String[] quini = limpiarFormato(resultado[2]);
+  StringBuilder sbq = new StringBuilder();
+  for(String q : quini){
+      if(!(q.equals(mendoza) && (horaB.after(horaVespertinaM)))){
+          sbq.append(q);
+          sbq.append("-");
+      }
+  }
+  String quinielas1 = sbq.toString();
+  if(i == 0) {
+	  quinielasAux = sbq.toString();
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+  if(!quinielas1.equals(quinielasAux)) {
+	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+	  quinielasAux = quinielas1;
+	  ticket.AddSubCabecera(ticket.DarEspacio());
+  }
+     StringBuilder sb = new StringBuilder("                           ");
+  
+      sb.replace(0,5, String.valueOf(numero));
+      sb.replace(8,20,String.valueOf(posiciones));
+      sb.setLength(27);
+      sb.replace(20,27, String.valueOf("$" + monto));
+      ticket.AddSubCabecera(sb.toString()); 
+
   ticket.AddSubCabecera(ticket.DarEspacio());
      }
     
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ticket.AddSubCabecera(ticket.DarEspacio());
+//ticket.AddSubCabecera(ticket.DarEspacio());
+} catch (ParseException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
 }  
 
 if(!tarde.isEmpty()){
+
+try {
+  DateFormat dateFormat = new SimpleDateFormat(FH);
+  Date	horaTardeM = dateFormat.parse(FH_TERCERA_M);
+  Date  horaA = dateFormat.parse(hora); 
   ticket.AddSubCabecera(ticket.DarEspacio());
   ticket.AddSubCabecera("TARDE:");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
-  ticket.AddSubCabecera(ticket.DarEspacio());
-    for(ResumenJugada r : tarde){  
+  String quinielasAux = "";
+  for(int i = 0; tarde.size() > i; i ++) {
     this.Nposiciones.clear();
     this.quinielas.clear();
     this.turnos.clear();
   String patron = "_";
   Pattern p1 = Pattern.compile(patron);
-  String[] resultado= p1.split(r.getResumen());
+  String[] resultado= p1.split(tarde.get(i).getResumen());
   int tipo=1;
   String numero = resultado[1];
   String monto=resultado[5];
   String posiciones = resultado[4];
-    String[] quini = limpiarFormato(resultado[2]);
+  String[] quini = limpiarFormato(resultado[2]);
   StringBuilder sbq = new StringBuilder();
         for(String q : quini){
-            if(!q.equals("O")){
+            if(!((q.equals(oros)) || (q.equals(mendoza) && (horaA.after(horaTardeM))))){
                 sbq.append(q);
                 sbq.append("-");
             }
         }
-  String quinielas1 = sbq.toString();
-  String quinielasT = "TODAS";
-  String quinielas;
-  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
-    StringBuilder sb = new StringBuilder("                           ");
-      
-     sb.replace(0,4, String.valueOf(numero));
-     sb.replace(6,7,String.valueOf(posiciones));
-     sb.replace(10,19,String.valueOf(quinielas));
-     sb.setLength(27);
-     sb.replace(23,27, String.valueOf(monto));
-  ticket.AddSubCabecera(sb.toString());    
-  ticket.AddSubCabecera(ticket.DarEspacio());
-     }
-    
+  
+        String quinielas1 = sbq.toString();
+        if(i == 0) {
+      	  quinielasAux = sbq.toString();
+      	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+      	  ticket.AddSubCabecera(ticket.DarEspacio());
+        }
+        if(!quinielas1.equals(quinielasAux)) {
+      	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+      	  quinielasAux = quinielas1;
+      	  ticket.AddSubCabecera(ticket.DarEspacio());
+        }
+           StringBuilder sb = new StringBuilder("                           ");
+        
+            sb.replace(0,5, String.valueOf(numero));
+            sb.replace(8,20,String.valueOf(posiciones));
+            sb.setLength(27);
+            sb.replace(20,27, String.valueOf("$" + monto));
+            ticket.AddSubCabecera(sb.toString()); 
+
+        ticket.AddSubCabecera(ticket.DarEspacio());
+
+  }   
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
-ticket.AddSubCabecera(ticket.DarEspacio());
+//ticket.AddSubCabecera(ticket.DarEspacio());
+} catch (ParseException e) {
+  // TODO Auto-generated catch block
+  e.printStackTrace();
+}
 }
 if(!nocturna.isEmpty()){
-     ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NOCTURNA:");
   ticket.AddSubCabecera(ticket.DarEspacio());
-  ticket.AddSubCabecera("NUMERO POS  QUINIELA   $$$ ");
-  ticket.AddSubCabecera(ticket.DarEspacio());
-    for(ResumenJugada r : nocturna){  
-    this.Nposiciones.clear();
-    this.quinielas.clear();
-    this.turnos.clear();
-  String patron = "_";
-  Pattern p1 = Pattern.compile(patron);
-  String[] resultado= p1.split(r.getResumen());
-  int tipo=1;
-  String numero = resultado[1];
-  String monto=resultado[5];
-  String posiciones = resultado[4];
-  String quinielas1 = resultado[2];
-  String quinielasT = "TODAS";
-  String quinielas;
-  quinielas=(quinielas1.length()==14)? quinielasT : quinielas1;
-    StringBuilder sb = new StringBuilder("                           ");
+ticket.AddSubCabecera("NOCTURNA:");
+ticket.AddSubCabecera(ticket.DarEspacio());
+
+String largoCadena = "";
+String quinielasAux = "";
+for(int i = 0; nocturna.size() > i; i ++) {
+  this.Nposiciones.clear();
+  this.quinielas.clear();
+  this.turnos.clear();
+String patron = "_";
+Pattern p1 = Pattern.compile(patron);
+String[] resultado= p1.split(nocturna.get(i).getResumen());
+int tipo=1;
+String numero = resultado[1];
+String monto=resultado[5];
+String posiciones = resultado[4];
+String[] quini = limpiarFormato(resultado[2]);
+StringBuilder sbq = new StringBuilder();
+for(String q : quini){
+         sbq.append(q);
+        sbq.append("-");
+ }
+
+      String quinielas1 = sbq.toString();
+      if(i == 0) {
+    	  quinielasAux = sbq.toString();
+    	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+    	  ticket.AddSubCabecera(ticket.DarEspacio());
+      }
+      if(!quinielas1.equals(quinielasAux)) {
+    	  ticket.AddSubCabecera("LOTERIAS: " + quinielas1);
+    	  quinielasAux = quinielas1;
+    	  ticket.AddSubCabecera(ticket.DarEspacio());
+      }
+         StringBuilder sb = new StringBuilder("                           ");
       
-     sb.replace(0,4, String.valueOf(numero));
-     sb.replace(6,7,String.valueOf(posiciones));
-     sb.replace(10,19,String.valueOf(quinielas));
-     sb.setLength(27);
-     sb.replace(23,27, String.valueOf(monto));
-  ticket.AddSubCabecera(sb.toString());    
-  ticket.AddSubCabecera(ticket.DarEspacio());
-     }
-      
+          sb.replace(0,5, String.valueOf(numero));
+          sb.replace(8,20,String.valueOf(posiciones));
+          sb.setLength(27);
+          sb.replace(20,27, String.valueOf("$" + monto));
+          ticket.AddSubCabecera(sb.toString()); 
+
+      ticket.AddSubCabecera(ticket.DarEspacio());
+
+} 
+  
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
 
-ticket.AddSubCabecera(ticket.DarEspacio());
+//ticket.AddSubCabecera(ticket.DarEspacio());
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //this.total = this.TotalBoletaResumen(resumens);

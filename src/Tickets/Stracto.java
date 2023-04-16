@@ -58,7 +58,7 @@ ticket.AddCabecera("** EL 33 **");
 
 ticket.AddCabecera(ticket.DarEspacio());
 
-ticket.AddCabecera("JUEGUE GANE Y COBRE YA ...");
+ticket.AddCabecera("JUEGUE GANEs Y COBRE YA");
 
 ticket.AddCabecera(ticket.DarEspacio());
 

@@ -57,6 +57,8 @@ public class ViewCargaDatos2Controller implements Initializable {
     private ObservableList<Ganada>cordoba;
     private ObservableList<Ganada>oros;
     private ObservableList<Ganada>corrientes;
+    private ObservableList<Ganada>mendoza;
+    private ObservableList<Ganada>chaco;
     
     private ObservableList<Ganada> listQuinielas[];
     
@@ -87,6 +89,10 @@ public class ViewCargaDatos2Controller implements Initializable {
     private HBox lblCordoba;
     @FXML
     private HBox lblOros;
+    @FXML
+    private HBox lblMendoza;
+    @FXML
+    private HBox lblChaco;
     
     private HBox lblTurnos[];
     private HBox lblQuinielas[];
@@ -154,6 +160,18 @@ public class ViewCargaDatos2Controller implements Initializable {
     @FXML
     private HBox lblCorrientes;
     @FXML
+    private TableView<?> tblMendoza;
+    @FXML
+    private TableColumn<?, ?> colNumeroM;
+    @FXML
+    private TableColumn<?, ?> colMendoza;
+    @FXML
+    private TableView<?> tblChaco;
+    @FXML
+    private TableColumn<?, ?> colNumeroCh;
+    @FXML
+    private TableColumn<?, ?> colChaco;
+    @FXML
     private HBox lblDe_las_10;
 
     /**
@@ -166,13 +184,13 @@ public class ViewCargaDatos2Controller implements Initializable {
         jugadaController = new JugadaController();
         ganadaController = new GanadaController();
         boletaController = new BoletaController();
-        this.quinielas = new String[]{"N", "P", "F", "E", "C", "O", "R"};
+        this.quinielas = new String[]{"N", "P", "F", "E", "C", "O", "R","M","CH"};
         this.turnos = new String[]{maniana, primera, segunda, tercera, cuarta};
         this.quiniela = 0;
         this.turno = 0;
         this.lblTurnos = new HBox[]{lblDe_las_10, lblMatutina, lblVespertina, lblTarde, lblNocturna};
-        this.lblQuinielas = new HBox[]{lblNacional,lblProvincia,lblSantafe,lblEntrerios,lblCordoba,lblOros,lblCorrientes};
-        this.tblQuinielas = new TableView[]{tblNacional,tblProvincia,tblSantafe,tblEntrerios,tblCordoba,tblOros,tblCorrientes};
+        this.lblQuinielas = new HBox[]{lblNacional,lblProvincia,lblSantafe,lblEntrerios,lblCordoba,lblOros,lblCorrientes,lblMendoza,lblChaco};
+        this.tblQuinielas = new TableView[]{tblNacional,tblProvincia,tblSantafe,tblEntrerios,tblCordoba,tblOros,tblCorrientes,tblMendoza,tblChaco};
         
          provincia = FXCollections.observableArrayList();
          nacional = FXCollections.observableArrayList();
@@ -181,9 +199,11 @@ public class ViewCargaDatos2Controller implements Initializable {
          cordoba = FXCollections.observableArrayList();
          oros = FXCollections.observableArrayList();
          corrientes = FXCollections.observableArrayList();
+         mendoza = FXCollections.observableArrayList();
+         chaco = FXCollections.observableArrayList();
          
          
-        this.listQuinielas = new ObservableList[]{nacional,provincia,santafe,entrerios,cordoba,oros,corrientes};
+        this.listQuinielas = new ObservableList[]{nacional,provincia,santafe,entrerios,cordoba,oros,corrientes,mendoza,chaco};
         
         this.colNacional.setCellValueFactory(new PropertyValueFactory("numero"));
         this.colProvincia.setCellValueFactory(new PropertyValueFactory("numero"));
@@ -192,6 +212,10 @@ public class ViewCargaDatos2Controller implements Initializable {
         this.colCordoba.setCellValueFactory(new PropertyValueFactory("numero"));
         this.colOros.setCellValueFactory(new PropertyValueFactory("numero"));
         this.colCorrientes.setCellValueFactory(new PropertyValueFactory("numero"));
+        this.colOros.setCellValueFactory(new PropertyValueFactory("numero"));
+        this.colCorrientes.setCellValueFactory(new PropertyValueFactory("numero"));
+        this.colMendoza.setCellValueFactory(new PropertyValueFactory("numero"));
+        this.colChaco.setCellValueFactory(new PropertyValueFactory("numero"));
         
         this.colNumeroN.setCellValueFactory(new PropertyValueFactory("posicion"));
         this.colNumeroP.setCellValueFactory(new PropertyValueFactory("posicion"));
@@ -200,7 +224,9 @@ public class ViewCargaDatos2Controller implements Initializable {
         this.colNumeroC.setCellValueFactory(new PropertyValueFactory("posicion"));
         this.colNumeroO.setCellValueFactory(new PropertyValueFactory("posicion"));
         this.colNumeroR.setCellValueFactory(new PropertyValueFactory("posicion"));
-        
+        this.colNumeroM.setCellValueFactory(new PropertyValueFactory("posicion"));
+        this.colNumeroCh.setCellValueFactory(new PropertyValueFactory("posicion"));
+
         this.setQuiniela(quiniela);
         this.setTurno(turno);
        
@@ -297,7 +323,7 @@ public void setFecha(){
   
     
    private void upQuiniela(int quiniela){
-        if(quiniela < 6){
+        if(quiniela < 8){
             this.quiniela++;
         }
     }
@@ -449,6 +475,34 @@ public void setFecha(){
         this.txtNumero.selectAll();
         }
     }
+
+    @FXML
+    private void seleccionarM(MouseEvent event) {
+        this.quiniela = 7;
+        this.setQuiniela(quiniela);        
+        Ganada ganada = this.tblQuinielas[quiniela].getSelectionModel().getSelectedItem();
+        if(ganada != null){
+        txtNumero.setText(ganada.getNumero());      
+        this.estado = "modificar";
+        this.txtNumero.setVisible(true);
+        this.txtNumero.requestFocus();   
+        this.txtNumero.selectAll();
+        }
+    }
+
+    @FXML
+    private void seleccionarCh(MouseEvent event) {
+        this.quiniela = 8;
+        this.setQuiniela(quiniela);        
+        Ganada ganada = this.tblQuinielas[quiniela].getSelectionModel().getSelectedItem();
+        if(ganada != null){
+        txtNumero.setText(ganada.getNumero());      
+        this.estado = "modificar";
+        this.txtNumero.setVisible(true);
+        this.txtNumero.requestFocus();   
+        this.txtNumero.selectAll();
+        }
+    }
     
     @SuppressWarnings("null")
     private void agregarNumero(String numero){
@@ -548,6 +602,12 @@ public void setFecha(){
         
         this.listQuinielas[6]=ganadaController.consultar(fechaSQL,"R", turno);
         this.tblQuinielas[6].setItems(this.listQuinielas[6]);
+
+        this.listQuinielas[7]=ganadaController.consultar(fechaSQL,"M", turno);
+        this.tblQuinielas[7].setItems(this.listQuinielas[7]);
+
+        this.listQuinielas[8]=ganadaController.consultar(fechaSQL,"CH", turno);
+        this.tblQuinielas[8].setItems(this.listQuinielas[8]);
 
     } 
     
